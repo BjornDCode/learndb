@@ -15,4 +15,14 @@ mix.js('resources/js/app.js', 'public/js')
    .postCss('resources/css/app.css', 'public/css', [
         require('tailwindcss'),
     ])
-   .copyDirectory('resources/fonts/', 'public/fonts');
+   .copyDirectory('resources/fonts/', 'public/fonts')
+   .webpackConfig({
+        output: { chunkFilename: 'js/[name].js?id=[chunkhash]' },
+        resolve: {
+            alias: {
+                vue$: 'vue/dist/vue.runtime.esm.js',
+                '@': path.resolve('resources/js'),
+                '~': path.resolve('resources'),
+            },
+        },
+    });
