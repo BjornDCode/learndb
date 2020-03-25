@@ -1,3 +1,81 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'Brandon Grotesque';
+    font-weight: 200;
+    font-style: normal;
+    src: url(/fonts/brandon-grotesque/Brandon-thin.otf);
+}
+@font-face {
+    font-family: 'Brandon Grotesque';
+    font-weight: 200;
+    font-style: italic;
+    src: url(/fonts/brandon-grotesque/Brandon-thin_it.otf);
+}
+
+@font-face {
+    font-family: 'Brandon Grotesque';
+    font-weight: 300;
+    font-style: normal;
+    src: url(/fonts/brandon-grotesque/Brandon-light.otf);
+}
+@font-face {
+    font-family: 'Brandon Grotesque';
+    font-weight: 300;
+    font-style: italic;
+    src: url(/fonts/brandon-grotesque/Brandon-light_it.otf);
+}
+
+@font-face {
+    font-family: 'Brandon Grotesque';
+    font-weight: 400;
+    font-style: normal;
+    src: url(/fonts/brandon-grotesque/Brandon-reg.otf);
+}
+@font-face {
+    font-family: 'Brandon Grotesque';
+    font-weight: 400;
+    font-style: italic;
+    src: url(/fonts/brandon-grotesque/Brandon-reg_it.otf);
+}
+
+@font-face {
+    font-family: 'Brandon Grotesque';
+    font-weight: 500;
+    font-style: normal;
+    src: url(/fonts/brandon-grotesque/Brandon-med.otf);
+}
+@font-face {
+    font-family: 'Brandon Grotesque';
+    font-weight: 500;
+    font-style: italic;
+    src: url(/fonts/brandon-grotesque/Brandon-med_it.otf);
+}
+
+@font-face {
+    font-family: 'Brandon Grotesque';
+    font-weight: 700;
+    font-style: normal;
+    src: url(/fonts/brandon-grotesque/Brandon-bld.otf);
+}
+@font-face {
+    font-family: 'Brandon Grotesque';
+    font-weight: 700;
+    font-style: italic;
+    src: url(/fonts/brandon-grotesque/Brandon-bld_it.otf);
+}
+
+@font-face {
+    font-family: 'Brandon Grotesque';
+    font-weight: 900;
+    font-style: normal;
+    src: url(/fonts/brandon-grotesque/Brandon-blk.otf);
+}
+@font-face {
+    font-family: 'Brandon Grotesque';
+    font-weight: 900;
+    font-style: italic;
+    src: url(/fonts/brandon-grotesque/Brandon-blk_it.otf);
+}

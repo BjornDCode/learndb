@@ -1,6 +1,11 @@
 module.exports = {
   theme: {
-    extend: {},
+    extend: {
+        fontFamily: {
+            'display': ['Brandon Grotesque'],
+            'body': ['IBM Plex Sans'],
+        }
+    },
   },
   variants: {},
   plugins: [],

@@ -3,6 +3,7 @@
 /public/storage
 /public/js
 /public/css
+/public/fonts
 /public/mix-manifest.json
 /storage/*.key
 /vendor
@@ -13,3 +14,4 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+.DS_Store
