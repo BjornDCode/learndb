@@ -13,7 +13,7 @@ class SearchController extends Controller
     public function index(SearchRequest $request)
     {
         return (new Search())
-            ->registerModel(Series::class, 'title')
+            ->registerModel(Series::class, 'title', 'description')
             ->search($request->input('query'));
     }
 

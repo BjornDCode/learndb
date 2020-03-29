@@ -13,5 +13,6 @@ $factory->define(Series::class, function (Faker $faker) {
     return [
         'title' => $title,
         'slug' => Str::slug($title),
+        'description' => $faker->text,
     ];
 });

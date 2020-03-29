@@ -17,6 +17,7 @@ class CreateSeriesTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
+            $table->text('description');
             $table->timestamps();
         });
     }

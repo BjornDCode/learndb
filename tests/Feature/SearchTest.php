@@ -39,4 +39,22 @@ class SearchTest extends TestCase
         ]);
     }
 
+    /** @test */
+    public function it_can_search_for_series_description()
+    {
+        $series = factory(Series::class)->create([
+            'description' => 'My series description'
+        ]);
+        factory(Series::class)->create();
+
+        $response = $this->getJson('api/search?query=description');
+
+        $response->assertJsonCount(1);
+        $response->assertJsonFragment([
+            'type' => 'series',
+            'title' => $series->title,
+            'url' => route('series.show', [$series->slug])
+        ]);
+    }
+
 }
