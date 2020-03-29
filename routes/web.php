@@ -20,6 +20,6 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index');
 
 Route::get('/library', 'SeriesController@index')->name('library');
-
+Route::get('/series/{series}', 'SeriesController@show')->name('series.show');
 
 
