@@ -1,5 +1,5 @@
 <template>
-    <Zondicon :icon="name" />
+    <Zondicon :icon="name" class="fill-current" />
 </template>
 
 <script>
@@ -14,7 +14,7 @@
             name: {
                 type: String,
                 required: true,
-            }
+            },
         }
     }
 </script>
