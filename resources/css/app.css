@@ -6,65 +6,65 @@
     font-family: 'Brandon Grotesque';
     font-weight: 200;
     font-style: normal;
-    src: url(/fonts/brandon-grotesque/Brandon-thin.otf);
+    src: url(/fonts/brandon-grotesque/Brandon_thin.otf);
 }
 @font-face {
     font-family: 'Brandon Grotesque';
     font-weight: 200;
     font-style: italic;
-    src: url(/fonts/brandon-grotesque/Brandon-thin_it.otf);
+    src: url(/fonts/brandon-grotesque/Brandon_thin_it.otf);
 }
 
 @font-face {
     font-family: 'Brandon Grotesque';
     font-weight: 300;
     font-style: normal;
-    src: url(/fonts/brandon-grotesque/Brandon-light.otf);
+    src: url(/fonts/brandon-grotesque/Brandon_light.otf);
 }
 @font-face {
     font-family: 'Brandon Grotesque';
     font-weight: 300;
     font-style: italic;
-    src: url(/fonts/brandon-grotesque/Brandon-light_it.otf);
+    src: url(/fonts/brandon-grotesque/Brandon_light_it.otf);
 }
 
 @font-face {
     font-family: 'Brandon Grotesque';
     font-weight: 400;
     font-style: normal;
-    src: url(/fonts/brandon-grotesque/Brandon-reg.otf);
+    src: url(/fonts/brandon-grotesque/Brandon_reg.otf);
 }
 @font-face {
     font-family: 'Brandon Grotesque';
     font-weight: 400;
     font-style: italic;
-    src: url(/fonts/brandon-grotesque/Brandon-reg_it.otf);
+    src: url(/fonts/brandon-grotesque/Brandon_reg_it.otf);
 }
 
 @font-face {
     font-family: 'Brandon Grotesque';
     font-weight: 500;
     font-style: normal;
-    src: url(/fonts/brandon-grotesque/Brandon-med.otf);
+    src: url(/fonts/brandon-grotesque/Brandon_med.otf);
 }
 @font-face {
     font-family: 'Brandon Grotesque';
     font-weight: 500;
     font-style: italic;
-    src: url(/fonts/brandon-grotesque/Brandon-med_it.otf);
+    src: url(/fonts/brandon-grotesque/Brandon_med_it.otf);
 }
 
 @font-face {
     font-family: 'Brandon Grotesque';
     font-weight: 700;
     font-style: normal;
-    src: url(/fonts/brandon-grotesque/Brandon-bld.otf);
+    src: url(/fonts/brandon-grotesque/Brandon_bld.otf);
 }
 @font-face {
     font-family: 'Brandon Grotesque';
     font-weight: 700;
     font-style: italic;
-    src: url(/fonts/brandon-grotesque/Brandon-bld_it.otf);
+    src: url(/fonts/brandon-grotesque/Brandon_bld_it.otf);
 }
 
 @font-face {
