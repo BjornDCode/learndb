@@ -1,41 +1,17 @@
 <template>
     <div>
-        <header>
-            <div class="flex justify-between items-center p-4">
-                <inertia-link :href="route('home')">
-                    <Logo class="block h-4" />
-                </inertia-link>
-                
-                <button type="button" class="focus:outline-none focus:shadow-outline">
-                    <Icon name="menu" class="w-6 h-6 text-blue-900" />
-                </button>                
-            </div>
-
-            <nav class="border-t border-b border-gray-300">
-                <inertia-link :href="route('library')" class="block text-sm text-blue-800 font-medium leading-none px-4 py-3">
-                    Library
-                </inertia-link>
-                <inertia-link href="#" class="block text-sm text-blue-800 font-medium leading-none px-4 py-3">
-                    Profile
-                </inertia-link>
-                <inertia-link href="#" class="block text-sm text-blue-800 font-medium leading-none px-4 py-3">
-                    Log out
-                </inertia-link>
-            </nav>
-        </header>
+        <Header />
 
         <slot />
     </div>
 </template>
 
 <script>
-    import Logo from '@/components/Logo'
-    import Icon from '@/components/Icon'
+    import Header from '@/partials/Header'
 
     export default {
         components: {
-            Logo,
-            Icon,
+            Header,
         }
     }
 </script>
