@@ -1,5 +1,5 @@
 <template>
-    <header class="md:flex md:justify-between md:items-center md:p-6">
+    <header class="md:flex md:justify-between md:items-center md:p-6 lg:max-w-screen-lg lg:mx-auto">
         <div class="flex justify-between items-center p-4 md:p-0">
             <inertia-link :href="route('home')">
                 <Logo class="block h-4" />
