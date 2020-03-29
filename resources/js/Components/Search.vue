@@ -4,7 +4,7 @@
             <input 
                 type="text" 
                 placeholder="Find topic" 
-                v-model="form.query"
+                v-model="query"
                 class="block w-full text-sm text-gray-700 rounded-md shadow-md p-4 focus:outline-none focus:shadow-outline"
             >
             <div 
@@ -45,19 +45,32 @@
 
         data() {
             return {
-                form: {
-                    query: ''
-                },
-                results: [
-                    { title: 'My first series', url: 'https://google.com', 'type': 'series' },
-                    { title: 'My second series', url: 'https://google.com', 'type': 'series' },
-                ]
+                query: '',
+                results: []
             }
         },
 
         methods: {
             getResultIcon(type) {
                 return 'queue'
+            },
+
+            search() {
+                axios.get(
+                    route('search', { query: this.query })
+                ).then(response => {
+                    this.results = [ ...response.data ]
+                })
+            }
+        },
+
+        watch: {
+            query() {
+                if (this.query.length < 1) {
+                    return
+                }
+
+                this.search()
             }
         }
     }
