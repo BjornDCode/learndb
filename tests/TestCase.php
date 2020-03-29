@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use PHPUnit\Framework\Assert;
 use Illuminate\Testing\TestResponse;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
@@ -9,9 +10,11 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
-     protected function setUp(): void
+    protected function setUp(): void
     {
         parent::setup();
+
+        $this->withOutExceptionHandling();
 
         TestResponse::macro('props', function ($key = null) {
             $props = json_decode(json_encode($this->original->getData()['page']['props']), JSON_OBJECT_AS_ARRAY);
