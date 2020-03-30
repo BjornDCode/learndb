@@ -12,10 +12,10 @@
             </div>
         </div>
 
-        <section class="px-4 py-8">
-            <h2 class="font-display text-3xl text-blue-900 font-bold">All</h2>
+        <section class="px-4 py-8 md:px-6 md:py-12 lg:px-0 lg:py-16 lg:mx-auto lg:max-w-screen-lg">
+            <h2 class="font-display text-3xl text-blue-900 font-bold mb-8 md:text-4xl">All</h2>
 
-            <ul>
+            <ul class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                 <li v-for="serie in series" :key="serie.id">
                     <SeriesCard :series="serie" />
                 </li>

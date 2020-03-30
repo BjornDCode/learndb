@@ -1,11 +1,11 @@
 <template>
-    <div class="shadow-md rounded-md overflow-hidden">
+    <div class="shadow-md rounded-md overflow-hidden h-full flex flex-col">
         <img 
             :src="series.image" 
             :alt="series.title"
             class="block w-full" 
         >
-        <div class="p-6">
+        <div class="p-6 flex-1 flex flex-col justify-between">
             <div>
                 <h3 class="font-display text-2xl font-medium text-gray-900 mb-2">
                     {{ series.title }}
