@@ -2,6 +2,8 @@
 
 namespace Tests;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use PHPUnit\Framework\Assert;
 use Illuminate\Testing\TestResponse;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
@@ -51,5 +53,37 @@ abstract class TestCase extends BaseTestCase
 
             return $this;
         });
+    }
+
+    public function assertJsonFragment(array $haystack, array $needle)
+    {
+        $actual = json_encode(Arr::sortRecursive(
+            (array) $haystack
+        ));
+
+        foreach (Arr::sortRecursive($needle) as $key => $value) {
+            $expected = $this->jsonSearchStrings($key, $value);
+
+            Assert::assertTrue(
+                Str::contains($actual, $expected),
+                'Unable to find JSON fragment: '.PHP_EOL.PHP_EOL.
+                '['.json_encode([$key => $value]).']'.PHP_EOL.PHP_EOL.
+                'within'.PHP_EOL.PHP_EOL.
+                "[{$actual}]."
+            );
+        }
+
+        return $this;
+    }
+
+    protected function jsonSearchStrings($key, $value)
+    {
+        $needle = substr(json_encode([$key => $value]), 1, -1);
+
+        return [
+            $needle.']',
+            $needle.'}',
+            $needle.',',
+        ];
     }
 }
