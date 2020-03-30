@@ -14,5 +14,6 @@ $factory->define(Series::class, function (Faker $faker) {
         'title' => $title,
         'slug' => Str::slug($title),
         'description' => $faker->text,
+        'image' => '/storage/app/public/series_images/placeholder.png',
     ];
 });
