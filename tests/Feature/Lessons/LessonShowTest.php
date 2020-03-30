@@ -28,4 +28,22 @@ class LessonShowTest extends TestCase
         $response->assertRedirect(route('login'));
     }
 
+    /** @test */
+    public function authenticated_users_can_see_the_lesson_page()
+    {
+        $this->login();
+
+        $lesson = factory(Lesson::class)->create();
+
+        $response = $this->get(
+            route('lesson.show', [
+                'series' => $lesson->series->slug,
+                'lesson' => $lesson->slug,
+            ])
+        );
+
+        $response->assertStatus(200);
+        $response->assertInertiaViewIs('Lesson/Show');
+    }
+
 }
