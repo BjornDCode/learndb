@@ -1,5 +1,7 @@
 <?php
 
+use App\Lesson;
+use App\Series;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +25,10 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/library', 'SeriesController@index')->name('library');
 
     Route::get('/series/{series}/lesson/{lesson}', 'LessonController@show')->name('lesson.show');
+    Route::bind('lesson', function ($lesson, $route) {
+        $series = Series::where('slug', $route->parameter('series'))->firstOrFail();
+        return Lesson::where('series_id', $series->id)->where('slug', $lesson)->firstOrFail();
+    });
 });
 
 Route::get('/series/{series}', 'SeriesController@show')->name('series.show');
