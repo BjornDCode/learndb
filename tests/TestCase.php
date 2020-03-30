@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use App\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use PHPUnit\Framework\Assert;
@@ -74,6 +75,15 @@ abstract class TestCase extends BaseTestCase
         }
 
         return $this;
+    }
+
+    public function login($params = [])
+    {
+        $user = factory(User::class)->create($params);
+
+        $this->actingAs($user);
+
+        return $user;
     }
 
     protected function jsonSearchStrings($key, $value)

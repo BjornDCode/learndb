@@ -12,8 +12,20 @@ class SeriesIndexTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
+    public function guest_users_can_not_access_the_library_page()
+    {
+        $this->withExceptionHandling();
+
+        $response = $this->get('/library');
+
+        $response->assertRedirect(route('login'));
+    }
+
+    /** @test */
     public function it_shows_the_library_page()
     {
+        $this->login();
+
         $response = $this->get('/library');
 
         $response->assertStatus(200);
@@ -23,6 +35,8 @@ class SeriesIndexTest extends TestCase
     /** @test */
     public function it_shows_all_series()
     {
+        $this->login();
+        
         factory(Series::class, 5)->create();
         $first_series = Series::first();
 
