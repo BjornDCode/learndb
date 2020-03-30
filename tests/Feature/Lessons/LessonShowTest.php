@@ -66,4 +66,25 @@ class LessonShowTest extends TestCase
         $response->assertStatus(404);
     }
 
+    /** @test */
+    public function it_returns_the_lesson_details()
+    {
+        $this->login();
+
+        $lesson = factory(Lesson::class)->create();
+
+        $response = $this->get(
+            route('lesson.show', [
+                'series' => $lesson->series->slug,
+                'lesson' => $lesson->slug,
+            ])
+        );
+
+        $response->assertPropValue('lesson', [
+            'id' => $lesson->id,
+            'title' => $lesson->title,
+            'description' => $lesson->description,
+        ]);
+    }
+
 }

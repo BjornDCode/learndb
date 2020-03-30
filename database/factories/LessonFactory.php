@@ -13,6 +13,7 @@ $factory->define(Lesson::class, function (Faker $faker) {
     return [
         'title' => $title,
         'slug' => Str::slug($title),
+        'description' => $faker->text,
         'series_id' => factory(Series::class)->create()->id,
     ];
 });

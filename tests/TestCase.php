@@ -41,7 +41,7 @@ abstract class TestCase extends BaseTestCase
             if (is_callable($value)) {
                 $value($this->props($key));
             } else {
-                Assert::assertEquals($this->props($key), $value);
+                Assert::assertEquals($value, $this->props($key));
             }
 
             return $this;
