@@ -19,14 +19,13 @@ class LessonShowTest extends TestCase
 
         $lesson = factory(Lesson::class)->create();
 
-        $response = $this->get(
+        $this->get(
             route('lesson.show', [
                 'series' => $lesson->series->slug,
                 'lesson' => $lesson->slug,
             ])
-        );
-
-        $response->assertRedirect(route('login'));
+        )
+        ->assertRedirect(route('login'));
     }
 
     /** @test */
@@ -36,15 +35,14 @@ class LessonShowTest extends TestCase
 
         $lesson = factory(Lesson::class)->create();
 
-        $response = $this->get(
+        $this->get(
             route('lesson.show', [
                 'series' => $lesson->series->slug,
                 'lesson' => $lesson->slug,
             ])
-        );
-
-        $response->assertStatus(200);
-        $response->assertInertiaViewIs('Lesson/Show');
+        )
+        ->assertStatus(200)
+        ->assertInertiaViewIs('Lesson/Show');
     }
 
     /** @test */
@@ -56,14 +54,12 @@ class LessonShowTest extends TestCase
         $lesson = factory(Lesson::class)->create();
         $series = factory(Series::class)->create();
 
-        $response = $this->get(
+        $this->get(
             route('lesson.show', [
                 'series' => $series->slug,
                 'lesson' => $lesson->slug,
             ])
-        );
-
-        $response->assertStatus(404);
+        )->assertStatus(404);
     }
 
     /** @test */
@@ -73,14 +69,13 @@ class LessonShowTest extends TestCase
 
         $lesson = factory(Lesson::class)->create();
 
-        $response = $this->get(
+        $this->get(
             route('lesson.show', [
                 'series' => $lesson->series->slug,
                 'lesson' => $lesson->slug,
             ])
-        );
-
-        $response->assertPropValue('lesson', [
+        )
+        ->assertPropValue('lesson', [
             'id' => $lesson->id,
             'title' => $lesson->title,
             'description' => $lesson->description,

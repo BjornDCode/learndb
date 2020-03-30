@@ -16,9 +16,8 @@ class SeriesIndexTest extends TestCase
     {
         $this->withExceptionHandling();
 
-        $response = $this->get('/library');
-
-        $response->assertRedirect(route('login'));
+        $this->get('/library')
+            ->assertRedirect(route('login'));
     }
 
     /** @test */
@@ -26,10 +25,9 @@ class SeriesIndexTest extends TestCase
     {
         $this->login();
 
-        $response = $this->get('/library');
-
-        $response->assertStatus(200);
-        $response->assertInertiaViewIs('Series/Index');
+        $this->get('/library')
+            ->assertStatus(200)
+            ->assertInertiaViewIs('Series/Index');
     }
 
     /** @test */
@@ -40,15 +38,14 @@ class SeriesIndexTest extends TestCase
         factory(Series::class, 5)->create();
         $first_series = Series::first();
 
-        $response = $this->get('/library');
-
-        $response->assertJsonFragmentInProp('series', [
-            'id' => $first_series->id,
-            'title' => $first_series->title,
-            'description' => $first_series->description,
-            'image' => $first_series->image,
-        ]);
-        $response->assertPropCount('series', 5);
+        $this->get('/library')
+            ->assertPropCount('series', 5)
+            ->assertJsonFragmentInProp('series', [
+                'id' => $first_series->id,
+                'title' => $first_series->title,
+                'description' => $first_series->description,
+                'image' => $first_series->image,
+            ]);
     }
 
 }
