@@ -7,9 +7,15 @@
         >
         <div class="p-6 flex-1 flex flex-col justify-between">
             <div>
-                <h3 class="font-display text-2xl font-medium text-gray-900 mb-2">
-                    {{ series.title }}
-                </h3>
+                <inertia-link 
+                    :href="route('series.show', { series: series.id })"
+                >
+                    <h3 
+                        class="font-display text-2xl font-medium text-gray-900 mb-2 hover:underline"
+                    >
+                        {{ series.title }}
+                    </h3>
+                </inertia-link>
                 <p class="text-gray-600 leading-relaxed">
                     {{ series.description }}
                 </p>
