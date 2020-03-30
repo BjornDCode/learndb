@@ -21,6 +21,8 @@ Route::get('/home', 'HomeController@index');
 
 Route::middleware(['auth'])->group(function() {
     Route::get('/library', 'SeriesController@index')->name('library');
+
+    Route::get('/series/{series}/lesson/{lesson}', 'LessonController@show')->name('lesson.show');
 });
 
 Route::get('/series/{series}', 'SeriesController@show')->name('series.show');
