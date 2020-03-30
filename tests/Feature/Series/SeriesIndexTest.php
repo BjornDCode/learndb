@@ -42,17 +42,13 @@ class SeriesIndexTest extends TestCase
 
         $response = $this->get('/library');
 
-        $response->assertHasProp('series');
-        $this->assertEquals(
-            5, 
-            count($response->props('series')),
-        );
-        $this->assertJsonFragment($response->props(), [
+        $response->assertJsonFragmentInProp('series', [
             'id' => $first_series->id,
             'title' => $first_series->title,
             'description' => $first_series->description,
             'image' => $first_series->image,
         ]);
+        $response->assertPropCount('series', 5);
     }
 
 }

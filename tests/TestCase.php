@@ -47,6 +47,39 @@ abstract class TestCase extends BaseTestCase
             return $this;
         });
 
+        TestResponse::macro('assertJsonFragmentInProp', function (string $key, array $needle) {
+            $this->assertHasProp($key);
+
+            $actual = json_encode(Arr::sortRecursive(
+                (array) $this->props($key)
+            ));
+
+            foreach (Arr::sortRecursive($needle) as $key => $value) {
+                $expected = $this->jsonSearchStrings($key, $value);
+
+                Assert::assertTrue(
+                    Str::contains($actual, $expected),
+                    'Unable to find JSON fragment: '.PHP_EOL.PHP_EOL.
+                    '['.json_encode([$key => $value]).']'.PHP_EOL.PHP_EOL.
+                    'within'.PHP_EOL.PHP_EOL.
+                    "[{$actual}]."
+                );
+            }
+
+            return $this;
+        });
+
+        TestResponse::macro('assertPropCount', function (string $key, int $count) {
+            $this->assertHasProp($key);
+
+            Assert::assertCount(
+                $count, 
+                $this->props($key)
+            );
+
+            return $this;
+        });        
+
         TestResponse::macro('assertInertiaViewIs', function ($component) {
             $page = json_decode(json_encode($this->original->getData()['page']), JSON_OBJECT_AS_ARRAY);
 
