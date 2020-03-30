@@ -1,5 +1,5 @@
 <template>
-    <div class="shadow-md rounded-md overflow-hidden h-full flex flex-col">
+    <div class="shadow-md rounded-md overflow-hidden h-full flex flex-col transition transition-shadow duration-100 hover:shadow-lg">
         <img 
             :src="series.image" 
             :alt="series.title"
