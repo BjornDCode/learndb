@@ -14,6 +14,12 @@
 
         <section class="px-4 py-8">
             <h2 class="font-display text-3xl text-blue-900 font-bold">All</h2>
+
+            <ul>
+                <li v-for="serie in series" :key="serie.id">
+                    <SeriesCard :series="serie" />
+                </li>
+            </ul>
         </section>
     </App>
 </template>
@@ -21,11 +27,20 @@
 <script>
     import App from '@/Layouts/App'
     import Search from '@/Components/Search'
+    import SeriesCard from '@/Components/SeriesCard'
 
     export default {
         components: {
             App,
             Search,
-        }
+            SeriesCard,
+        },
+
+        props: {
+            series: {
+                type: Array,
+                default: () => []
+            }
+        },
     }
 </script>
