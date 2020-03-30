@@ -11,6 +11,10 @@
                 <Search />
             </div>
         </div>
+
+        <section class="px-4 py-8">
+            <h2 class="font-display text-3xl text-blue-900 font-bold">All</h2>
+        </section>
     </App>
 </template>
 
