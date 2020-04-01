@@ -18,6 +18,8 @@ class CreateLessonsTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('description');
+            $table->string('content_type');
+            $table->bigInteger('content_id')->unsigned();
             $table->bigInteger('series_id')->unsigned();
             $table->timestamps();
 

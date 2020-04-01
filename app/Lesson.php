@@ -13,4 +13,9 @@ class Lesson extends Model
         return $this->belongsTo(Series::class);
     }
 
+    public function content()
+    {
+        return $this->morphTo();
+    }
+
 }
