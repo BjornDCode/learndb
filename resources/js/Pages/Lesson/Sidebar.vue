@@ -16,19 +16,28 @@
 
         <ul v-if="open">
             <li>
-                <inertia-link href="#">
-                    <div>
-                        <span>What is a database?</span>
-                        <div>
-                            <div>
-                                <span>Video</span>
-                            </div>
-                            <div>
-                                <span>1 min</span>
-                            </div>
-                        </div>
-                    </div>
-                </inertia-link>
+                <SidebarItem
+                    href="#"
+                    title="What is a database?"
+                    type="Video"
+                    duration="01:24 min"
+                    status="finished"
+                />
+                <SidebarItem
+                    href="#"
+                    title="Quiz: What is a database?"
+                    type="Quiz"
+                    duration="3 questions"
+                    status="started"
+                    :current="true"
+                />
+                <SidebarItem
+                    href="#"
+                    title="What is a table?"
+                    type="Article"
+                    duration="2 min"
+                    status="none"
+                />
             </li>
         </ul>
     </aside>
@@ -36,15 +45,17 @@
 
 <script>
     import Icon from '@/Components/Icon'
+    import SidebarItem from '@/Pages/Lesson/SidebarItem'
 
     export default {
         components: {
             Icon,
+            SidebarItem,
         },
 
         data() {
             return {
-                open: false,
+                open: true,
             }
         },
 

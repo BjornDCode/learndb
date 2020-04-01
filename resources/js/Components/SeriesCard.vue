@@ -31,10 +31,7 @@
                         </span>
                     </div>
                     <div class="flex items-center">
-                        <Icon
-                            name="hour-glass"
-                            class="text-gray-500 w-3 h-3 mr-2"
-                        />
+                        <Icon name="time" class="text-gray-500 w-3 h-3 mr-2" />
                         <span class="text-sm text-gray-600">
                             24 min
                         </span>
