@@ -76,7 +76,7 @@ class LessonShowTest extends TestCase
                 'lesson' => $lesson->slug,
             ])
         )
-        ->assertPropValue('lesson', [
+        ->assertJsonFragmentInProp('lesson', [
             'id' => $lesson->id,
             'title' => $lesson->title,
             'description' => $lesson->description,
