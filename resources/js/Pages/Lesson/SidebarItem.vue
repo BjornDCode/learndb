@@ -1,11 +1,17 @@
 <template>
     <inertia-link
         :href="href"
-        class="flex items-center px-4 py-8 border-t border-gray-300 md:border-t-0"
+        class="flex items-center px-4 py-8 border-t border-gray-300 md:first:border-t-0 md:hover:bg-gray-200 md:hover:shadow"
         :class="{ 'bg-gray-200 shadow-md': current }"
     >
         <div class="flex-1">
-            <span class="text-xl font-display font-medium text-gray-900">
+            <span
+                class="text-xl font-display font-medium"
+                :class="{
+                    'hover:text-gray-900': current,
+                    'text-gray-700': !current,
+                }"
+            >
                 {{ title }}
             </span>
             <div class="flex items-center">

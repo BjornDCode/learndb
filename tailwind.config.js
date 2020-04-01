@@ -5,6 +5,9 @@ module.exports = {
         display: ['Brandon Grotesque'],
         body: ['IBM Plex Sans'],
       },
+      spacing: {
+        '80': '20rem',
+      },
     },
   },
   variants: {

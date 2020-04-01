@@ -1,8 +1,8 @@
 <template>
-    <aside class="bg-gray-100 md:sticky md:top-0 md:h-screen">
+    <aside class="bg-gray-100 md:sticky md:top-0 md:h-screen md:w-64 lg:w-80">
         <button
             type="button"
-            class="flex items-center w-full text-left px-4 py-2 focus:outline-none focus:shadow-outline"
+            class="flex items-center w-full text-left px-4 py-2 focus:outline-none focus:shadow-outline md:hidden"
             @click="toggle"
         >
             <Icon
