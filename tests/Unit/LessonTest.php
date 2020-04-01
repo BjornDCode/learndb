@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Quiz;
 use App\Video;
 use App\Lesson;
 use App\Series;
@@ -32,7 +33,7 @@ class LessonTest extends TestCase
 
         $this->assertInstanceOf(Article::class, $lesson->content);
     }
-    
+
     /** @test */
     public function it_can_have_a_video_as_content()
     {
@@ -43,6 +44,18 @@ class LessonTest extends TestCase
         ]);
 
         $this->assertInstanceOf(Video::class, $lesson->content);
+    }
+    
+    /** @test */
+    public function it_can_have_a_quiz_as_content()
+    {
+        $quiz = factory(Quiz::class)->create();
+        $lesson = factory(Lesson::class)->create([
+            'content_id' => $quiz->id,
+            'content_type' => Quiz::class,
+        ]);
+
+        $this->assertInstanceOf(Quiz::class, $lesson->content);
     }
 
 }
