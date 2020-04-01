@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Lessons;
 
+use App\Video;
 use App\Lesson;
 use App\Series;
 use App\Article;
@@ -84,7 +85,7 @@ class LessonShowTest extends TestCase
     }    
 
     /** @test */
-    public function it_returns_the_lesson_article()
+    public function it_returns_an_article_lesson()
     {
         $this->login();
 
@@ -106,6 +107,35 @@ class LessonShowTest extends TestCase
                 'title' => $article->title,
                 'content' => $article->content,
                 'duration' => $article->duration,
+            ]
+        ]);
+    }
+
+    /** @test */
+    public function it_returns_a_video_lesson()
+    {
+        $this->login();
+
+        $video = factory(Video::class)->create();
+        $lesson = factory(Lesson::class)->create([
+            'content_type' => Video::class,
+            'content_id' => $video->id,
+        ]);
+
+        $this->get(
+            route('lesson.show', [
+                'series' => $lesson->series->slug,
+                'lesson' => $lesson->slug,
+            ])
+        )
+        ->assertJsonFragmentInProp('lesson', [
+            'content' => [
+                'id' => $video->id,
+                'title' => $video->title,
+                'description' => $video->description,
+                'url' => $video->url,
+                'duration' => $video->duration,
+                'type' => $video->type,
             ]
         ]);
     }
