@@ -20,7 +20,7 @@ class ArticleTest extends TestCase
     }
 
     /** @test */
-    public function an_article_can_calculate_its_duration()
+    public function it_can_calculate_its_duration()
     {
         $faker = Factory::create();
 

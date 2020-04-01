@@ -2,10 +2,14 @@
 
 namespace Tests\Feature\Lessons;
 
+use App\Quiz;
 use App\Video;
+use App\Answer;
 use App\Lesson;
+use App\Option;
 use App\Series;
 use App\Article;
+use App\Question;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -137,6 +141,68 @@ class LessonShowTest extends TestCase
                 'url' => $video->url,
                 'duration' => $video->duration,
                 'type' => $video->type,
+            ]
+        ]);
+    }    
+
+    /** @test */
+    public function it_returns_a_quiz_lesson()
+    {
+        $user = $this->login();
+
+        $quiz = factory(Quiz::class)->create();
+        $question = factory(Question::class)->create([
+            'quiz_id' => $quiz->id,
+        ]);
+        $correct_option = factory(Option::class)->create([
+            'question_id' => $question->id,
+            'correct' => true,
+        ]);
+        $wrong_option = factory(Option::class)->create([
+            'question_id' => $question->id,
+            'correct' => false,
+        ]);
+        factory(Answer::class)->create([
+            'user_id' => $user->id,
+            'option_id' => $correct_option->id,
+        ]);
+
+        $lesson = factory(Lesson::class)->create([
+            'content_type' => Quiz::class,
+            'content_id' => $quiz->id,
+        ]);
+
+        $this->get(
+            route('lesson.show', [
+                'series' => $lesson->series->slug,
+                'lesson' => $lesson->slug,
+            ])
+        )
+        ->assertJsonFragmentInProp('lesson', [
+            'content' => [
+                'id' => $quiz->id,
+                'title' => $quiz->title,
+                'duration' => $quiz->duration,
+                'questions' => [
+                    [
+                        'id' => $question->id,
+                        'title' => $question->title,
+                        'options' => [
+                            [
+                                'id' => $correct_option->id,
+                                'title' => $correct_option->title,
+                                'correct' => $correct_option->correct,
+                                'answered' => true,
+                            ],
+                            [
+                                'id' => $wrong_option->id,
+                                'title' => $wrong_option->title,
+                                'correct' => $wrong_option->correct,
+                                'answered' => false,
+                            ]
+                        ]
+                    ]
+                ],
             ]
         ]);
     }
