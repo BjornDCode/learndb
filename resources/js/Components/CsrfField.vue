@@ -1,5 +1,5 @@
 <template>
-    <input type="hidden" name="_token" :value="csrf">
+    <input type="hidden" name="_token" :value="csrf" />
 </template>
 
 <script>
@@ -8,6 +8,6 @@
             return {
                 csrf: this.$page.app.csrfToken,
             }
-        }
+        },
     }
 </script>

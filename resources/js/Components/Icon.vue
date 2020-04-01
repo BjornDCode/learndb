@@ -7,7 +7,7 @@
 
     export default {
         components: {
-            Zondicon
+            Zondicon,
         },
 
         props: {
@@ -15,6 +15,6 @@
                 type: String,
                 required: true,
             },
-        }
+        },
     }
 </script>
