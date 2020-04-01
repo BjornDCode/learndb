@@ -82,4 +82,29 @@ class LessonShowTest extends TestCase
         ]);
     }
 
+    /** @test */
+    public function it_returns_all_lessons_for_the_series()
+    {
+        $this->login();
+
+        $lesson = factory(Lesson::class)->create();
+
+        $lessons = factory(Lesson::class, 5)->create([
+            'series_id' => $lesson->series->id,
+        ]);
+
+        $this->get(
+            route('lesson.show', [
+                'series' => $lesson->series->slug,
+                'lesson' => $lesson->slug,
+            ])
+        )
+        ->assertPropCount('lessons', 6)
+        ->assertJsonFragmentInProp('lessons', [
+            'id' => $lessons->first()->id,
+            'title' => $lessons->first()->title,
+            'description' => $lessons->first()->description,
+        ]);
+    }
+
 }

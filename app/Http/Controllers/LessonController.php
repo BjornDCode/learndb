@@ -15,6 +15,7 @@ class LessonController extends Controller
     {
         return Inertia::render('Lesson/Show', [
             'lesson' => LessonResource::make($lesson),
+            'lessons' => LessonResource::collection($lesson->series->lessons),
         ]);
     }
 
