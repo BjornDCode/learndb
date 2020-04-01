@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
+
+    public function getTypeAttribute()
+    {
+        return 'Article';
+    }
     
     public function getDurationAttribute()
     {

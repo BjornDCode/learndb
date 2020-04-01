@@ -107,6 +107,7 @@ class LessonShowTest extends TestCase
                 'title' => $article->title,
                 'content' => $article->content,
                 'duration' => $article->duration,
+                'type' => $article->type,
             ]
         ]);
     }

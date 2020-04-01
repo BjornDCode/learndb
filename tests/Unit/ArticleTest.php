@@ -12,6 +12,14 @@ class ArticleTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
+    public function it_can_returns_its_type()
+    {
+        $article = factory(Article::class)->create();
+
+        $this->assertEquals('Article', $article->type);
+    }
+
+    /** @test */
     public function an_article_can_calculate_its_duration()
     {
         $faker = Factory::create();
