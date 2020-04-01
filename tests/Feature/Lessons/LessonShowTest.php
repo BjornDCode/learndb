@@ -4,6 +4,7 @@ namespace Tests\Feature\Lessons;
 
 use App\Lesson;
 use App\Series;
+use App\Article;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -79,6 +80,33 @@ class LessonShowTest extends TestCase
             'id' => $lesson->id,
             'title' => $lesson->title,
             'description' => $lesson->description,
+        ]);
+    }    
+
+    /** @test */
+    public function it_returns_the_lesson_article()
+    {
+        $this->login();
+
+        $article = factory(Article::class)->create();
+        $lesson = factory(Lesson::class)->create([
+            'content_type' => Article::class,
+            'content_id' => $article->id,
+        ]);
+
+        $this->get(
+            route('lesson.show', [
+                'series' => $lesson->series->slug,
+                'lesson' => $lesson->slug,
+            ])
+        )
+        ->assertJsonFragmentInProp('lesson', [
+            'content' => [
+                'id' => $article->id,
+                'title' => $article->title,
+                'content' => $article->content,
+                'duration' => $article->duration,
+            ]
         ]);
     }
 
