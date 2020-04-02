@@ -233,4 +233,26 @@ class LessonShowTest extends TestCase
         ]);
     }
 
+    /** @test */
+    public function it_returns_the_series()
+    {
+        $this->login();
+
+        $lesson = factory(Lesson::class)->create();
+
+        $this->get(
+            route('lesson.show', [
+                'series' => $lesson->series->slug,
+                'lesson' => $lesson->slug,
+            ])
+        )
+        ->assertJsonFragmentInProp('series', [
+            'id' => $lesson->series->id,
+            'title' => $lesson->series->title,
+            'slug' => $lesson->series->slug,
+            'description' => $lesson->series->description,
+            'image' => $lesson->series->image,
+        ]);
+    }
+
 }
