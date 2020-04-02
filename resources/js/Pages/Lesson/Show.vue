@@ -3,8 +3,8 @@
         <div class="md:flex">
             <Sidebar :items="lessons" :lesson="lesson" :series="series" />
 
-            <main>
-                <Component :is="lesson.content.type" />
+            <main class="flex-1 min-w-0">
+                <Component :is="lesson.content.type" :lesson="lesson" />
             </main>
         </div>
     </App>
