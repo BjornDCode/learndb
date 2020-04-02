@@ -15,27 +15,18 @@
         </button>
 
         <ul v-if="open">
-            <li>
+            <li v-for="item in items">
                 <SidebarItem
-                    href="#"
-                    title="What is a database?"
-                    type="Video"
-                    duration="01:24 min"
-                    status="finished"
-                />
-                <SidebarItem
-                    href="#"
-                    title="Quiz: What is a database?"
-                    type="Quiz"
-                    duration="3 questions"
-                    status="started"
-                    :current="true"
-                />
-                <SidebarItem
-                    href="#"
-                    title="What is a table?"
-                    type="Article"
-                    duration="2 min"
+                    :href="
+                        route('lesson.show', {
+                            series: series.slug,
+                            lesson: item.slug,
+                        })
+                    "
+                    :title="item.title"
+                    :type="item.content.type"
+                    :duration="item.content.duration"
+                    :current="isCurrent(item)"
                     status="none"
                 />
             </li>
@@ -53,6 +44,21 @@
             SidebarItem,
         },
 
+        props: {
+            items: {
+                type: Array,
+                default: () => [],
+            },
+            series: {
+                type: Object,
+                default: () => [],
+            },
+            lesson: {
+                type: Object,
+                default: () => [],
+            },
+        },
+
         data() {
             return {
                 open: true,
@@ -62,6 +68,16 @@
         methods: {
             toggle() {
                 this.open = !this.open
+            },
+
+            isCurrent(item) {
+                return (
+                    window.location.href ===
+                    route('lesson.show', {
+                        series: this.series.slug,
+                        lesson: item.slug,
+                    }).url()
+                )
             },
         },
     }

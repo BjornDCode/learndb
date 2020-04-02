@@ -20,6 +20,7 @@ class LessonResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
+            'slug' => $this->slug,
             'content' => $content_resource::make($this->content),
         ];
     }

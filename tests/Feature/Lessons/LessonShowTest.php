@@ -85,6 +85,7 @@ class LessonShowTest extends TestCase
             'id' => $lesson->id,
             'title' => $lesson->title,
             'description' => $lesson->description,
+            'slug' => $lesson->slug,
         ]);
     }    
 

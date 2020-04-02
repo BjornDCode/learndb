@@ -1,7 +1,7 @@
 <template>
     <App>
         <div class="md:flex">
-            <Sidebar />
+            <Sidebar :items="lessons" :lesson="lesson" :series="series" />
 
             <main>
                 // Content
@@ -18,6 +18,21 @@
         components: {
             App,
             Sidebar,
+        },
+
+        props: {
+            lessons: {
+                type: Array,
+                default: () => [],
+            },
+            series: {
+                type: Object,
+                default: () => [],
+            },
+            lesson: {
+                type: Object,
+                default: () => [],
+            },
         },
     }
 </script>
