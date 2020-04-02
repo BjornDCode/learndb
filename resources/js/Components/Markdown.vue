@@ -90,7 +90,11 @@
         @apply text-gray-900 underline;
     }
 
-    div >>> pre {
-        @apply p-8 bg-gray-100 rounded-md overflow-x-scroll;
+    div >>> code {
+        @apply font-mono;
+    }
+
+    div >>> pre code {
+        @apply p-8 bg-gray-100 rounded-md block overflow-x-scroll;
     }
 </style>
