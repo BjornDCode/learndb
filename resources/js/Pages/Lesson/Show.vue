@@ -4,7 +4,7 @@
             <Sidebar :items="lessons" :lesson="lesson" :series="series" />
 
             <main>
-                // Content
+                <Component :is="lesson.content.type" />
             </main>
         </div>
     </App>
@@ -12,12 +12,18 @@
 
 <script>
     import App from '@/Layouts/App'
+    import Quiz from '@/Pages/Lesson/Quiz'
+    import Video from '@/Pages/Lesson/Video'
     import Sidebar from '@/Pages/Lesson/Sidebar'
+    import Article from '@/Pages/Lesson/Article'
 
     export default {
         components: {
             App,
+            Quiz,
+            Video,
             Sidebar,
+            Article,
         },
 
         props: {
