@@ -183,6 +183,7 @@ class LessonShowTest extends TestCase
                 'id' => $quiz->id,
                 'title' => $quiz->title,
                 'duration' => $quiz->duration,
+                'type' => $quiz->type,
                 'questions' => [
                     [
                         'id' => $question->id,
