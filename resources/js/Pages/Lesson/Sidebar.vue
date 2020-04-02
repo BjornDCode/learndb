@@ -14,7 +14,7 @@
             </span>
         </button>
 
-        <ul v-if="open">
+        <ul :class="{ hidden: !open }" class="md:block">
             <li v-for="item in items">
                 <SidebarItem
                     :href="
@@ -61,7 +61,7 @@
 
         data() {
             return {
-                open: true,
+                open: false,
             }
         },
 
