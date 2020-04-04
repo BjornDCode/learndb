@@ -4,6 +4,7 @@
         :class="{
             'bg-green-300': is('finished'),
             'bg-blue-300': is('started'),
+            'bg-red-300': is('wrong'),
             'bg-gray-300': is('none'),
         }"
     >
@@ -13,6 +14,7 @@
             class="w-3 h-3 text-white"
         />
         <Icon v-if="is('started')" name="pause" class="w-3 h-3 text-white" />
+        <Icon v-if="is('wrong')" name="close" class="w-3 h-3 text-white" />
     </div>
 </template>
 
@@ -29,7 +31,7 @@
                 type: String,
                 default: 'none',
                 validator: value =>
-                    ['finished', 'started', 'none'].includes(value),
+                    ['finished', 'wrong', 'started', 'none'].includes(value),
             },
         },
 

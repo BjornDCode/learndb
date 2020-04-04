@@ -26,19 +26,19 @@
             </div>
         </div>
         <div>
-            <SidebarItemStatus :status="status" />
+            <StatusIndicator :status="status" />
         </div>
     </inertia-link>
 </template>
 
 <script>
     import Icon from '@/Components/Icon'
-    import SidebarItemStatus from '@/Pages/Lesson/SidebarItemStatus'
+    import StatusIndicator from '@/Pages/Lesson/StatusIndicator'
 
     export default {
         components: {
             Icon,
-            SidebarItemStatus,
+            StatusIndicator,
         },
 
         props: {
