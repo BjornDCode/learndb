@@ -1,7 +1,7 @@
 <template>
     <div class="border-t border-gray-300">
         <div
-            class="px-4 py-12 md:px-12 flex flex-col-reverse lg:flex-row lg:max-w-5xl"
+            class="px-4 py-12 md:px-12 flex flex-col-reverse lg:flex-row lg:max-w-6xl"
         >
             <div class="lg:w-3/4">
                 <Headline :level="3">
