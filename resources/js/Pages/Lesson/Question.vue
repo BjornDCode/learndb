@@ -37,9 +37,5 @@
                 return this.question.options.some(option => option.answered)
             },
         },
-
-        mounted() {
-            console.log(this.question)
-        },
     }
 </script>
