@@ -9,6 +9,7 @@
                     :lesson="lesson"
                     :series="series"
                 />
+                <Footer :resources="resources" />
             </main>
         </div>
     </App>
@@ -18,6 +19,7 @@
     import App from '@/Layouts/App'
     import Quiz from '@/Pages/Lesson/Quiz'
     import Video from '@/Pages/Lesson/Video'
+    import Footer from '@/Pages/Lesson/Footer'
     import Sidebar from '@/Pages/Lesson/Sidebar'
     import Article from '@/Pages/Lesson/Article'
 
@@ -26,6 +28,7 @@
             App,
             Quiz,
             Video,
+            Footer,
             Sidebar,
             Article,
         },
@@ -37,10 +40,14 @@
             },
             series: {
                 type: Object,
-                default: () => [],
+                default: () => ({}),
             },
             lesson: {
                 type: Object,
+                default: () => ({}),
+            },
+            resources: {
+                type: Array,
                 default: () => [],
             },
         },
