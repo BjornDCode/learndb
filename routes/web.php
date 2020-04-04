@@ -29,6 +29,8 @@ Route::middleware(['auth'])->group(function() {
         $series = Series::where('slug', $route->parameter('series'))->firstOrFail();
         return Lesson::where('series_id', $series->id)->where('slug', $lesson)->firstOrFail();
     });
+
+    Route::post('/series/{series}/lesson/{lesson}/answers', 'AnswerController@store')->name('answers.store');
 });
 
 Route::get('/series/{series}', 'SeriesController@show')->name('series.show');
