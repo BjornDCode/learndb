@@ -18,9 +18,5 @@
                 required: true,
             },
         },
-
-        mounted() {
-            console.log(this.lesson)
-        },
     }
 </script>
