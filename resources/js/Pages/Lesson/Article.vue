@@ -1,15 +1,17 @@
 <template>
-    <div class="px-4 py-12 md:px-12 lg:max-w-3xl">
+    <Container>
         <Markdown :content="lesson.content.content" />
-    </div>
+    </Container>
 </template>
 
 <script>
     import Markdown from '@/Components/Markdown'
+    import Container from '@/Pages/Lesson/Container'
 
     export default {
         components: {
             Markdown,
+            Container,
         },
 
         props: {
