@@ -12,6 +12,7 @@ module.exports = {
   },
   variants: {
     borderWidth: ['responsive', 'first', 'last'],
+    boxShadow: ['responsive', 'hover', 'focus', 'active'],
   },
   plugins: [],
 }
