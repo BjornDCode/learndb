@@ -9,7 +9,7 @@ $factory->define(Video::class, function (Faker $faker) {
     return [
         'title' => $faker->words(3, true),
         'description' => $faker->text,
-        'url' => 'https://vimeo.com/9011932',
+        'url' => 'https://player.vimeo.com/video/175883915',
         'duration' => '01:24 min',
     ];
 });
