@@ -7,7 +7,9 @@ use App\Video;
 use App\Lesson;
 use App\Series;
 use App\Article;
+use App\Resource;
 use Tests\TestCase;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class LessonTest extends TestCase
@@ -56,6 +58,18 @@ class LessonTest extends TestCase
         ]);
 
         $this->assertInstanceOf(Quiz::class, $lesson->content);
+    }
+
+    /** @test */
+    public function it_has_resources()
+    {
+        $lesson = factory(Lesson::class)->create();
+        factory(Resource::class, 2)->create([
+            'lesson_id' => $lesson->id,
+        ]);
+
+        $this->assertInstanceOf(Collection::class, $lesson->resources);
+        $this->assertInstanceOf(Resource::class, $lesson->resources()->first());
     }
 
 }

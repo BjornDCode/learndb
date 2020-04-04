@@ -8,6 +8,7 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Http\Resources\LessonResource;
 use App\Http\Resources\SeriesResource;
+use App\Http\Resources\ResourceResource;
 
 class LessonController extends Controller
 {
@@ -18,6 +19,7 @@ class LessonController extends Controller
             'series' => SeriesResource::make($lesson->series),
             'lesson' => LessonResource::make($lesson),
             'lessons' => LessonResource::collection($lesson->series->lessons),
+            'resources' => ResourceResource::collection($lesson->resources),
         ]);
     }
 

@@ -10,6 +10,7 @@ use App\Option;
 use App\Series;
 use App\Article;
 use App\Question;
+use App\Resource;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -253,6 +254,30 @@ class LessonShowTest extends TestCase
             'slug' => $lesson->series->slug,
             'description' => $lesson->series->description,
             'image' => $lesson->series->image,
+        ]);
+    }
+
+    /** @test */
+    public function it_returns_the_lesson_resources()
+    {
+        $this->login();
+
+        $lesson = factory(Lesson::class)->create();
+        $resource = factory(Resource::class)->create([
+            'lesson_id' => $lesson->id,
+        ]);
+
+        $this->get(
+            route('lesson.show', [
+                'series' => $lesson->series->slug,
+                'lesson' => $lesson->slug,
+            ])
+        )
+        ->assertJsonFragmentInProp('resources', [
+            [
+                'title' => $resource->title,
+                'url' => $resource->url,
+            ]
         ]);
     }
 
