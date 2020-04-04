@@ -12,6 +12,18 @@
                 <Headline :level="3">
                     Resources
                 </Headline>
+
+                <ul>
+                    <li v-for="resource in resources" :key="resource.url">
+                        <a
+                            target="_blank"
+                            :href="resource.url"
+                            class="block text-lg text-gray-800 underline mb-2"
+                        >
+                            {{ resource.title }}
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
