@@ -7,6 +7,7 @@ use App\Option;
 use App\Series;
 use App\Article;
 use App\Question;
+use App\Resource;
 use Illuminate\Database\Seeder;
 
 class LessonSeeder extends Seeder
@@ -47,6 +48,12 @@ class LessonSeeder extends Seeder
         Question::all()->each(function ($question) {
             factory(Option::class, 4)->create([
                 'question_id' => $question->id,
+            ]);
+        });
+
+        Lesson::all()->each(function ($lesson) {
+            factory(Resource::class, 3)->create([
+                'lesson_id' => $lesson->id,
             ]);
         });
     }
