@@ -7,6 +7,7 @@
             'bg-white active:shadow-xs': !disabled,
         }"
         :disabled="disabled"
+        @click="answer"
     >
         <span>
             {{ option.title }}
@@ -41,6 +42,12 @@
                 }
 
                 return this.option.correct ? 'finished' : 'wrong'
+            },
+        },
+
+        methods: {
+            answer() {
+                this.$emit('answer', this.option.id)
             },
         },
     }

@@ -5,6 +5,7 @@
             v-for="question in lesson.content.questions"
             :key="question.id"
             :question="question"
+            @answer="answer"
         />
     </Container>
 </template>
@@ -25,6 +26,28 @@
             lesson: {
                 type: Object,
                 required: true,
+            },
+            series: {
+                type: Object,
+                default: () => [],
+            },
+        },
+
+        methods: {
+            answer(optionId) {
+                this.$inertia.post(
+                    route('answers.store', {
+                        series: this.series.slug,
+                        lesson: this.lesson.slug,
+                    }),
+                    {
+                        option_id: optionId,
+                    },
+                    {
+                        preserveState: true,
+                        preserveScroll: true,
+                    }
+                )
             },
         },
     }

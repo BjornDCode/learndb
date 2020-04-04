@@ -9,7 +9,11 @@
                 :key="option.id"
                 class="mb-8"
             >
-                <Option :option="option" :disabled="answered" />
+                <Option
+                    :option="option"
+                    :disabled="answered"
+                    @answer="$emit('answer', $event)"
+                />
             </li>
         </ul>
     </div>
