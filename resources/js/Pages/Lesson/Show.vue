@@ -9,7 +9,7 @@
                     :lesson="lesson"
                     :series="series"
                 />
-                <Footer :resources="resources" />
+                <Footer :resources="resources" :comments="comments" />
             </main>
         </div>
     </App>
@@ -47,6 +47,10 @@
                 default: () => ({}),
             },
             resources: {
+                type: Array,
+                default: () => [],
+            },
+            comments: {
                 type: Array,
                 default: () => [],
             },

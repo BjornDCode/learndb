@@ -306,7 +306,7 @@ class LessonShowTest extends TestCase
             [
                 'id' => $parent_comment->id,
                 'content' => $parent_comment->content,
-                'created_at' => $parent_comment->created_at,
+                'created_at' => $parent_comment->created_at->diffForHumans(),
                 'author' => [
                     'name' => $parent_comment->author->name,
                     'email_hash' => $parent_comment->generateEmailHash(),
@@ -315,7 +315,7 @@ class LessonShowTest extends TestCase
                     [
                         'id' => $nested_comment->id,
                         'content' => $nested_comment->content,
-                        'created_at' => $nested_comment->created_at,
+                        'created_at' => $nested_comment->created_at->diffForHumans(),
                         'author' => [
                             'name' => $nested_comment->author->name,
                             'email_hash' => $nested_comment->generateEmailHash(),

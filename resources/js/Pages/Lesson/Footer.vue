@@ -7,6 +7,8 @@
                 <Headline :level="3">
                     Comments
                 </Headline>
+
+                <CommentsList :comments="comments" />
             </div>
             <div class="lg:w-1/4 lg:ml-8">
                 <Headline :level="3">
@@ -31,14 +33,20 @@
 
 <script>
     import Headline from '@/Components/Headline'
+    import CommentsList from '@/Pages/Lesson/CommentsList'
 
     export default {
         components: {
             Headline,
+            CommentsList,
         },
 
         props: {
             resources: {
+                type: Array,
+                default: () => [],
+            },
+            comments: {
                 type: Array,
                 default: () => [],
             },
