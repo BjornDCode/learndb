@@ -6,6 +6,7 @@ use App\Lesson;
 use App\Option;
 use App\Series;
 use App\Article;
+use App\Comment;
 use App\Question;
 use App\Resource;
 use Illuminate\Database\Seeder;
@@ -55,6 +56,16 @@ class LessonSeeder extends Seeder
             factory(Resource::class, 3)->create([
                 'lesson_id' => $lesson->id,
             ]);
+
+            factory(Comment::class, 3)->create([
+                'lesson_id' => $lesson->id,
+            ]);
+        });
+
+        Comment::all()->nth(2)->each(function ($comment) {
+           factory(Comment::class)->create([
+                'parent_id' => $comment->id,
+            ]); 
         });
     }
 }
