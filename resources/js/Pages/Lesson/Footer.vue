@@ -9,6 +9,17 @@
                 </Headline>
 
                 <CommentsList :comments="comments" />
+
+                <div>
+                    <Headline :level="4">
+                        Add a comment
+                    </Headline>
+
+                    <CommentForm
+                        :form-values="{ lesson_id: this.lesson.id }"
+                        @submit="comment"
+                    />
+                </div>
             </div>
             <div class="lg:w-1/4 lg:ml-8">
                 <Headline :level="3">
@@ -33,15 +44,25 @@
 
 <script>
     import Headline from '@/Components/Headline'
+    import CommentForm from '@/Pages/Lesson/CommentForm'
     import CommentsList from '@/Pages/Lesson/CommentsList'
 
     export default {
         components: {
             Headline,
+            CommentForm,
             CommentsList,
         },
 
         props: {
+            series: {
+                type: Object,
+                required: true,
+            },
+            lesson: {
+                type: Object,
+                required: true,
+            },
             resources: {
                 type: Array,
                 default: () => [],
@@ -49,6 +70,22 @@
             comments: {
                 type: Array,
                 default: () => [],
+            },
+        },
+
+        methods: {
+            comment(data) {
+                this.$inertia.post(
+                    route('comment.store', {
+                        series: this.series.slug,
+                        lesson: this.lesson.slug,
+                    }),
+                    data,
+                    {
+                        preserveState: true,
+                        preserveScroll: true,
+                    }
+                )
             },
         },
     }

@@ -9,7 +9,12 @@
                     :lesson="lesson"
                     :series="series"
                 />
-                <Footer :resources="resources" :comments="comments" />
+                <Footer
+                    :series="series"
+                    :lesson="lesson"
+                    :resources="resources"
+                    :comments="comments"
+                />
             </main>
         </div>
     </App>
