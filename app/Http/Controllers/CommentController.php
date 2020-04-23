@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class CommentController extends Controller
@@ -17,7 +18,11 @@ class CommentController extends Controller
             'parent_id' => 'required_without:lesson_id|numeric|exists:comments,id',
         ]);
 
-        Comment::create($data);
+        Comment::create(
+            array_merge($data, [
+                'author_id' => Auth::user()->id,
+            ])
+        );
 
         return Redirect::back();
     }

@@ -92,7 +92,7 @@ class CommentTest extends TestCase
     /** @test */
     public function a_user_can_leave_a_top_level_comment()
     {
-        $this->login();
+        $user = $this->login();
 
         $lesson = factory(Lesson::class)->create();
 
@@ -104,6 +104,7 @@ class CommentTest extends TestCase
             ->assertRedirect($this->lessonRoute);
 
         $this->assertDatabaseHas('comments', [
+            'author_id' => $user->id,
             'content' => 'This is my comment',
             'lesson_id' => $lesson->id,
             'parent_id' => null,
@@ -113,7 +114,7 @@ class CommentTest extends TestCase
     /** @test */
     public function a_user_can_leave_a_nested_comment()
     {
-        $this->login();
+        $user = $this->login();
         
         $parent = factory(Comment::class)->create();
 
@@ -125,6 +126,7 @@ class CommentTest extends TestCase
             ->assertRedirect($this->lessonRoute);
 
         $this->assertDatabaseHas('comments', [
+            'author_id' => $user->id,
             'content' => 'This is my comment',
             'lesson_id' => null,
             'parent_id' => $parent->id,
