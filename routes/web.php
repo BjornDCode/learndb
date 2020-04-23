@@ -18,10 +18,12 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/home', 'HomeController@index');
 
 Route::middleware(['auth'])->group(function() {
+    Route::get('/', function () {
+        return redirect(route('library'));
+    })->name('home');
+    
     Route::get('/library', 'SeriesController@index')->name('library');
 
     Route::get('/series/{series}/lesson/{lesson}', 'LessonController@show')->name('lesson.show');
