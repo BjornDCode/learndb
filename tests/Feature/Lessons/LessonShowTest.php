@@ -9,6 +9,7 @@ use App\Lesson;
 use App\Option;
 use App\Series;
 use App\Article;
+use App\Comment;
 use App\Question;
 use App\Resource;
 use Tests\TestCase;
@@ -277,6 +278,51 @@ class LessonShowTest extends TestCase
             [
                 'title' => $resource->title,
                 'url' => $resource->url,
+            ]
+        ]);
+    }
+
+    /** @test */
+    public function it_returns_the_lesson_comments()
+    {
+        $this->login();
+
+        $lesson = factory(Lesson::class)->create();
+        $parent_comment = factory(Comment::class)->create([
+            'lesson_id' => $lesson->id,
+        ]);
+        $nested_comment = factory(Comment::class)->create([
+            'parent_id' => $parent_comment->id,
+        ]);
+
+        $response = $this->get(
+            route('lesson.show', [
+                'series' => $lesson->series->slug,
+                'lesson' => $lesson->slug,
+            ])
+        );
+
+        $response->assertJsonFragmentInProp('comments', [
+            [
+                'id' => $parent_comment->id,
+                'content' => $parent_comment->content,
+                'created_at' => $parent_comment->created_at,
+                'author' => [
+                    'name' => $parent_comment->author->name,
+                    'email' => $parent_comment->author->email,
+                ],
+                'children' => [
+                    [
+                        'id' => $nested_comment->id,
+                        'content' => $nested_comment->content,
+                        'created_at' => $nested_comment->created_at,
+                        'author' => [
+                            'name' => $nested_comment->author->name,
+                            'email' => $nested_comment->author->email,
+                        ],
+                        'children' => [],
+                    ]
+                ]
             ]
         ]);
     }

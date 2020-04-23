@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Series;
+use App\Comment;
 use App\Resource;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,6 +23,11 @@ class Lesson extends Model
     public function resources()
     {
         return $this->hasMany(Resource::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 
 }
