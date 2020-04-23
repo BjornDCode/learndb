@@ -8,7 +8,11 @@
                     Comments
                 </Headline>
 
-                <CommentsList :comments="comments" />
+                <CommentsList
+                    :comments="comments"
+                    @comment="comment"
+                    :is-top-level="true"
+                />
 
                 <div>
                     <Headline :level="4">

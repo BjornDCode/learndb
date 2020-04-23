@@ -17,14 +17,19 @@
                             {{ comment.author.name }}
                         </span>
                     </div>
-                    <button class="text-gray-600 text-sm">
+                    <button class="text-gray-600 text-sm" @click="toggleForm">
                         Reply
                     </button>
                 </div>
             </div>
         </div>
 
-        <slot name="footer" :children="comment.children" />
+        <slot
+            name="footer"
+            :children="comment.children"
+            :replying="replying"
+            :submit="submit"
+        />
     </div>
 </template>
 
@@ -37,9 +42,26 @@
             },
         },
 
+        data() {
+            return {
+                replying: false,
+            }
+        },
+
         computed: {
             image() {
                 return `https://www.gravatar.com/avatar/${this.comment.author.email_hash}`
+            },
+        },
+
+        methods: {
+            toggleForm() {
+                this.replying = !this.replying
+            },
+
+            submit(event) {
+                this.$emit('comment', event)
+                this.toggleForm()
             },
         },
     }
