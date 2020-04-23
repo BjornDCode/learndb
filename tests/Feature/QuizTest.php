@@ -42,7 +42,7 @@ class QuizTest extends TestCase
 
         $this->from($this->lessonRoute)
             ->post($this->answerRoute)
-            ->assertRedirect($this->lessonRoute);;
+            ->assertRedirect($this->lessonRoute);
     }
 
     /** @test */
