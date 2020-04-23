@@ -20,7 +20,7 @@ class CommentResource extends JsonResource
             'created_at' => $this->created_at,
             'author' => [
                 'name' => $this->author->name, 
-                'email' => $this->author->email, 
+                'email_hash' => $this->generateEmailHash($this->author->email), 
             ],
             'children' => CommentResource::collection($this->children),
         ];

@@ -23,4 +23,9 @@ class Comment extends Model
         return $this->hasMany(Comment::class, 'parent_id');
     }
 
+    public function generateEmailHash()
+    {
+        return md5( strtolower( trim( $this->author->email ) ) );
+    }
+
 }

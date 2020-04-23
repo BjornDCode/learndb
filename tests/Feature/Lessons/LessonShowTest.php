@@ -309,7 +309,7 @@ class LessonShowTest extends TestCase
                 'created_at' => $parent_comment->created_at,
                 'author' => [
                     'name' => $parent_comment->author->name,
-                    'email' => $parent_comment->author->email,
+                    'email_hash' => $parent_comment->generateEmailHash(),
                 ],
                 'children' => [
                     [
@@ -318,7 +318,7 @@ class LessonShowTest extends TestCase
                         'created_at' => $nested_comment->created_at,
                         'author' => [
                             'name' => $nested_comment->author->name,
-                            'email' => $nested_comment->author->email,
+                            'email_hash' => $nested_comment->generateEmailHash(),
                         ],
                         'children' => [],
                     ]
