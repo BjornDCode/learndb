@@ -6,6 +6,7 @@ use App\Series;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Http\Resources\SeriesResource;
+use Illuminate\Support\Facades\Redirect;
 
 class SeriesController extends Controller
 {
@@ -20,9 +21,14 @@ class SeriesController extends Controller
         ]);
     }
 
-    public function show()
+    public function show(Series $series)
     {
-        
+        return Redirect::to(
+            route('lesson.show', [
+                'series' => $series->slug,
+                'lesson' => $series->lessons->first()->slug,
+            ])
+        );
     }
 
 }
