@@ -21,6 +21,23 @@
 
         <section
             class="px-4 py-8 md:px-6 md:py-12 lg:px-0 lg:py-16 lg:mx-auto lg:max-w-screen-lg"
+            v-if="current_series.length"
+        >
+            <h2
+                class="font-display text-3xl text-blue-900 font-bold mb-8 md:text-4xl"
+            >
+                Currently Watching
+            </h2>
+
+            <ul class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <li v-for="serie in current_series" :key="serie.id">
+                    <SeriesCard :series="serie" />
+                </li>
+            </ul>
+        </section>
+
+        <section
+            class="px-4 py-8 md:px-6 md:py-12 lg:px-0 lg:py-16 lg:mx-auto lg:max-w-screen-lg"
         >
             <h2
                 class="font-display text-3xl text-blue-900 font-bold mb-8 md:text-4xl"
@@ -51,6 +68,10 @@
 
         props: {
             series: {
+                type: Array,
+                default: () => [],
+            },
+            current_series: {
                 type: Array,
                 default: () => [],
             },

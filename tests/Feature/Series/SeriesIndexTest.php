@@ -111,4 +111,30 @@ class SeriesIndexTest extends TestCase
             ]);
     }
 
+    /** @test */
+    public function it_shows_the_users_current_series()
+    {
+        $user = $this->login();
+        
+        factory(Series::class, 5)->create();
+        $series_started = factory(Series::class)->create();
+        $lesson = factory(Lesson::class)->create([
+            'series_id' => $series_started->id,
+        ]);
+        factory(Activity::class)->create([
+            'user_id' => $user->id,
+            'item_id' => $lesson->id,
+            'item_type' => Lesson::class,
+        ]);
+
+        $this->get('/library')
+            ->assertPropCount('current_series', 1)
+            ->assertJsonFragmentInProp('current_series', [
+                'id' => $series_started->id,
+                'title' => $series_started->title,
+                'description' => $series_started->description,
+                'image' => $series_started->image,
+            ]);
+    }
+
 }
