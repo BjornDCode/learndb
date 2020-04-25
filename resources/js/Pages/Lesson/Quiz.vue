@@ -33,6 +33,14 @@
             },
         },
 
+        computed: {
+            finished() {
+                return this.lesson.content.questions.every(question => {
+                    return question.options.some(option => option.answered)
+                })
+            },
+        },
+
         methods: {
             answer(optionId) {
                 this.$inertia.post(
@@ -48,6 +56,14 @@
                         preserveScroll: true,
                     }
                 )
+            },
+        },
+
+        watch: {
+            finished() {
+                if (this.finished) {
+                    this.$emit('finished')
+                }
             },
         },
     }
