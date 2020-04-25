@@ -17,7 +17,7 @@ class LessonController extends Controller
     
     public function show(Series $series, Lesson $lesson)
     {
-        Auth::user()->activities()->create([
+        Auth::user()->activities()->firstOrCreate([
             'item_id' => $lesson->id,
             'item_type' => Lesson::class,
             'type' => 'started',

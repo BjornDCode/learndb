@@ -19,7 +19,7 @@ class ActivityController extends Controller
             'type' => 'required',
         ]);
 
-        Auth::user()->activities()->create($data);
+        Auth::user()->activities()->firstOrCreate($data);
 
         return Redirect::back();
     }
