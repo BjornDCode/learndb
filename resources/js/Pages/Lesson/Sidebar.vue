@@ -27,7 +27,7 @@
                     :type="item.content.type"
                     :duration="item.content.duration"
                     :current="isCurrent(item)"
-                    status="none"
+                    :status="item.status"
                 />
             </li>
         </ul>

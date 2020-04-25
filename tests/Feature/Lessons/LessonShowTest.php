@@ -10,6 +10,7 @@ use App\Option;
 use App\Series;
 use App\Article;
 use App\Comment;
+use App\Activity;
 use App\Question;
 use App\Resource;
 use Tests\TestCase;
@@ -233,6 +234,42 @@ class LessonShowTest extends TestCase
             'id' => $lessons->first()->id,
             'title' => $lessons->first()->title,
             'description' => $lessons->first()->description,
+        ]);
+    }
+
+    /** @test */
+    public function it_returns_activity_for_all_the_lessons()
+    {
+        $user = $this->login();
+
+        $series = factory(Series::class)->create();
+        $lesson_new = factory(Lesson::class)->create([
+            'series_id' => $series->id,
+        ]);
+        $lesson_started = factory(Lesson::class)->create([
+            'series_id' => $series->id,
+        ]);
+
+        $activity = factory(Activity::class)->create([
+            'user_id' => $user->id,
+            'item_id' => $lesson_started->id,
+            'item_type' => Lesson::class,
+            'type' => 'started'
+        ]);
+
+        $this->get(
+            route('lesson.show', [
+                'series' => $lesson_started->series->slug,
+                'lesson' => $lesson_started->slug,
+            ])
+        )
+        ->assertJsonFragmentInProp('lessons', [
+            'id' => $lesson_new->id,
+            'status' => null,
+        ])
+        ->assertJsonFragmentInProp('lessons', [
+            'id' => $lesson_started->id,
+            'status' => 'started',
         ]);
     }
 

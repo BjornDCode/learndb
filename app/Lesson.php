@@ -30,4 +30,9 @@ class Lesson extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function getActivityStatus()
+    {
+        return $this->activity ? $this->activity->type : null;
+    }
+
 }

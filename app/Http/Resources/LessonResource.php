@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class LessonResource extends JsonResource
@@ -21,6 +22,7 @@ class LessonResource extends JsonResource
             'title' => $this->title,
             'description' => $this->description,
             'slug' => $this->slug,
+            'status' => Auth::user()->getActivityStatusForItem($this->resource),
             'content' => $content_resource::make($this->content),
         ];
     }

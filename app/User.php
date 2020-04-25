@@ -49,4 +49,13 @@ class User extends Authenticatable
         return $this->hasMany(Activity::class);
     }
 
+    public function getActivityStatusForItem($item)
+    {
+        $activity = $this->activities
+            ->where('item_id', $item->id)
+            ->where('item_type', get_class($item))->last();
+
+        return $activity ? $activity->type : null;
+    }
+
 }
