@@ -42,8 +42,42 @@ class SeriesTest extends TestCase
         ]);
 
         // Then
-        $this->assertFalse($series_new->hasStarted());
-        $this->assertTrue($series_started->hasStarted());
+        $this->assertFalse($series_new->started);
+        $this->assertTrue($series_started->started);
+    }
+
+    /** @test */
+    public function it_can_get_the_user_progress()
+    {
+        $user = $this->login();
+        
+        $series_new = factory(Series::class)->create();
+        $series_started = factory(Series::class)->create();
+        $lesson = factory(Lesson::class)->create([
+            'series_id' => $series_started->id,
+        ]);
+        factory(Activity::class)->create([
+            'user_id' => $user->id,
+            'item_id' => $lesson->id,
+            'item_type' => Lesson::class,
+            'type' => 'started',
+        ]);
+        factory(Activity::class)->create([
+            'user_id' => $user->id,
+            'item_id' => $lesson->id,
+            'item_type' => Lesson::class,
+            'type' => 'finished',
+        ]);
+
+        factory(Lesson::class, 5)->create([
+            'series_id' => $series_new->id,
+        ]);
+        factory(Lesson::class, 4)->create([
+            'series_id' => $series_started->id,
+        ]);
+
+        $this->assertEquals('5 lessons', $series_new->progress);
+        $this->assertEquals('1/5 lessons', $series_started->progress);
     }
 
 }

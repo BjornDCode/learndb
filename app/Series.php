@@ -26,16 +26,30 @@ class Series extends Model implements Searchable
         );
     }
 
-    public function lessons()
-    {
-        return $this->hasMany(Lesson::class);
-    }
-
-    public function hasStarted()
+    public function getStartedLessonsCount()
     {
         return Activity::where('user_id', Auth::user()->id)
             ->where('item_type', Lesson::class)
-            ->whereIn('item_id', $this->lessons->pluck('id'))->count() > 0;
+            ->whereIn('item_id', $this->lessons->pluck('id'))
+            ->get()
+            ->unique('item_id')
+            ->count();
+    }
+
+    public function getStartedAttribute()
+    {
+        return $this->getStartedLessonsCount() > 0;
+    }
+
+
+    public function getProgressAttribute()
+    {
+        return $this->started ? $this->getStartedLessonsCount() . "/" . $this->lessons->count() . " lessons" : $this->lessons->count() . " lessons";
+    }
+
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class);
     }
 
 }

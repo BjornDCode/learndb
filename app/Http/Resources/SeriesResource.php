@@ -20,7 +20,8 @@ class SeriesResource extends JsonResource
             'slug' => $this->slug,
             'description' => $this->description,
             'image' => $this->image,
-            'started' => $this->hasStarted(),
+            'started' => $this->started,
+            'progress' => $this->progress,
         ];
     }
 }

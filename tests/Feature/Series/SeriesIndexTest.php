@@ -77,4 +77,38 @@ class SeriesIndexTest extends TestCase
             ]);
     }
 
+    /** @test */
+    public function it_shows_progress_for_series_that_has_been_started()
+    {
+        $user = $this->login();
+        
+        $series_new = factory(Series::class)->create();
+        $series_started = factory(Series::class)->create();
+        $lesson = factory(Lesson::class)->create([
+            'series_id' => $series_started->id,
+        ]);
+        factory(Activity::class)->create([
+            'user_id' => $user->id,
+            'item_id' => $lesson->id,
+            'item_type' => Lesson::class,
+        ]);
+
+        factory(Lesson::class, 5)->create([
+            'series_id' => $series_new->id,
+        ]);
+        factory(Lesson::class, 4)->create([
+            'series_id' => $series_started->id,
+        ]);
+
+        $this->get('/library')
+            ->assertJsonFragmentInProp('series', [
+                'id' => $series_new->id,
+                'progress' => '5 lessons',
+            ])
+            ->assertJsonFragmentInProp('series', [
+                'id' => $series_started->id,
+                'progress' => '1/5 lessons',
+            ]);
+    }
+
 }
