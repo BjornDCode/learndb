@@ -35,4 +35,29 @@ class ActivityTest extends TestCase
         ]);
     }
 
+    /** @test */
+    public function it_can_record_when_a_lesson_is_finished()
+    {
+        $user = $this->login();
+        $lesson = factory(Lesson::class)->create();
+
+        $response = $this->postJson(
+            route('activity.store', [
+                'user_id' => $user->id,
+                'item_id' => $lesson->id,
+                'item_type' => Lesson::class,
+                'type' => 'finished',
+            ])
+        );
+
+        $response->assertStatus(201);
+
+        $this->assertDatabaseHas('activities', [
+            'user_id' => $user->id,
+            'item_id' => $lesson->id,
+            'item_type' => Lesson::class,
+            'type' => 'finished',
+        ]);
+    }
+
 }

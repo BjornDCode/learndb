@@ -34,6 +34,7 @@ Route::middleware(['auth'])->group(function() {
 
     Route::post('/series/{series}/lesson/{lesson}/answers', 'AnswerController@store')->name('answers.store');
     Route::post('/comments', 'CommentController@store')->name('comment.store');
+    Route::post('/activities', 'ActivityController@store')->name('activity.store');
 });
 
 Route::get('/series/{series}', 'SeriesController@show')->name('series.show');
