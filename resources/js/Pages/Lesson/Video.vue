@@ -4,6 +4,7 @@
             :source="lesson.content.url"
             :width="videoSize.width"
             :height="videoSize.height"
+            @ended="$emit('finished')"
         />
         <Container>
             <Headline>

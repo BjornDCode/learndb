@@ -35,6 +35,9 @@
 
         mounted() {
             this.player = new Player(this.$el)
+            this.player.on('ended', () => {
+                this.$emit('ended')
+            })
         },
     }
 </script>
