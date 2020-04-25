@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Option;
+use App\Activity;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -41,6 +42,11 @@ class User extends Authenticatable
     public function answers()
     {
         return $this->belongsToMany(Option::class, 'answers');
+    }
+
+    public function activities()
+    {
+        return $this->hasMany(Activity::class);
     }
 
 }
