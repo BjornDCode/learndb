@@ -42,7 +42,7 @@
                     :href="route('series.show', { series: series.id })"
                     class="block shadow text-xs font-display font-bold text-blue-100 bg-blue-800 rounded px-6 py-2 transition transition-transform duration-100 transform hover:scale-105 hover:shadow-md"
                 >
-                    Start
+                    {{ series.started ? 'Continue' : 'Start' }}
                 </inertia-link>
             </footer>
         </div>
