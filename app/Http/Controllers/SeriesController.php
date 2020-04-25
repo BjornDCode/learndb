@@ -23,10 +23,11 @@ class SeriesController extends Controller
 
     public function show(Series $series)
     {
+        // dd($series->nextUnfinishedLesson());
         return Redirect::to(
             route('lesson.show', [
                 'series' => $series->slug,
-                'lesson' => $series->lessons->first()->slug,
+                'lesson' => $series->nextUnfinishedLesson()->slug,
             ])
         );
     }

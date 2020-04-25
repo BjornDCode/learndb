@@ -6,7 +6,7 @@
         <div class="p-6 flex-1 flex flex-col justify-between">
             <div>
                 <inertia-link
-                    :href="route('series.show', { series: series.id })"
+                    :href="route('series.show', { series: series.slug })"
                 >
                     <h3
                         class="font-display text-2xl font-medium text-gray-900 mb-2 hover:underline"
@@ -39,7 +39,7 @@
                 </div>
 
                 <inertia-link
-                    :href="route('series.show', { series: series.id })"
+                    :href="route('series.show', { series: series.slug })"
                     class="block shadow text-xs font-display font-bold text-blue-100 bg-blue-800 rounded px-6 py-2 transition transition-transform duration-100 transform hover:scale-105 hover:shadow-md"
                 >
                     {{ series.started ? 'Continue' : 'Start' }}

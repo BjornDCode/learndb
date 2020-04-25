@@ -67,4 +67,19 @@ class Series extends Model implements Searchable
         return $this->hasMany(Lesson::class);
     }
 
+    public function nextUnfinishedLesson()
+    {
+        if ($this->finished) {
+            return $this->lessons->first();            
+        }
+
+        if ($this->getFinishedLessonsCount() > 0) {
+            return $this->lessons->filter(function ($lesson) {
+                return Auth::user()->getActivityStatusForItem($lesson) !== 'finished';
+            })->first();
+        }
+
+        return $this->lessons->first();
+    }
+
 }
