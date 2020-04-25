@@ -41,16 +41,21 @@ class ActivityTest extends TestCase
         $user = $this->login();
         $lesson = factory(Lesson::class)->create();
 
-        $response = $this->postJson(
-            route('activity.store', [
-                'user_id' => $user->id,
-                'item_id' => $lesson->id,
-                'item_type' => Lesson::class,
-                'type' => 'finished',
-            ])
-        );
+        $response = $this->from(
+                route('lesson.show', [$lesson->series->slug, $lesson->slug])
+            )
+            ->postJson(
+                route('activity.store', [
+                    'user_id' => $user->id,
+                    'item_id' => $lesson->id,
+                    'item_type' => Lesson::class,
+                    'type' => 'finished',
+                ])
+            );
 
-        $response->assertStatus(201);
+        $response->assertRedirect(
+            route('lesson.show', [$lesson->series->slug, $lesson->slug])
+        );
 
         $this->assertDatabaseHas('activities', [
             'user_id' => $user->id,

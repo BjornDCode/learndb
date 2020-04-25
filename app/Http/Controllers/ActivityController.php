@@ -6,6 +6,7 @@ use App\Activity;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class ActivityController extends Controller
 {
@@ -20,7 +21,7 @@ class ActivityController extends Controller
 
         Auth::user()->activities()->create($data);
 
-        return new Response('', 201);
+        return Redirect::back();
     }
 
 }

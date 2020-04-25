@@ -8,6 +8,7 @@
                     :is="lesson.content.type"
                     :lesson="lesson"
                     :series="series"
+                    @finished="recordActivity"
                 />
                 <Footer
                     :series="series"
@@ -58,6 +59,23 @@
             comments: {
                 type: Array,
                 default: () => [],
+            },
+        },
+
+        methods: {
+            recordActivity() {
+                this.$inertia.post(
+                    route('activity.store'),
+                    {
+                        item_id: this.lesson.id,
+                        item_type: 'App\\Lesson',
+                        type: 'finished',
+                    },
+                    {
+                        preserveState: true,
+                        preserveScroll: true,
+                    }
+                )
             },
         },
     }
