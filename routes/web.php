@@ -25,6 +25,7 @@ Route::middleware(['auth'])->group(function() {
     })->name('home');
     
     Route::get('/library', 'SeriesController@index')->name('library');
+    Route::get('/series/{series}', 'SeriesController@show')->name('series.show');
 
     Route::get('/series/{series}/lesson/{lesson}', 'LessonController@show')->name('lesson.show');
     Route::bind('lesson', function ($lesson, $route) {
@@ -37,6 +38,5 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/activities', 'ActivityController@store')->name('activity.store');
 });
 
-Route::get('/series/{series}', 'SeriesController@show')->name('series.show');
 
 

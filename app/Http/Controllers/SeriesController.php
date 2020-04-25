@@ -20,4 +20,9 @@ class SeriesController extends Controller
         ]);
     }
 
+    public function show()
+    {
+        
+    }
+
 }
