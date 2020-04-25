@@ -15,7 +15,7 @@ class SeriesController extends Controller
         return Inertia::render('Series/Index', [
             'series' => SeriesResource::collection(Series::all()),
             'current_series' => SeriesResource::collection(Series::all()->filter(function ($series) {
-                return $series->started;
+                return $series->started && !$series->finished;
             })),
         ]);
     }

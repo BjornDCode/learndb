@@ -47,6 +47,31 @@ class SeriesTest extends TestCase
     }
 
     /** @test */
+    public function it_knows_if_its_finished_for_the_user()
+    {
+        // Given
+        $user = $this->login();
+        $series_new = factory(Series::class)->create();
+        $series_finished = factory(Series::class)->create();
+        $lesson = factory(Lesson::class)->create([
+            'series_id' => $series_finished->id,
+        ]);
+        factory(Activity::class)->create([
+            'user_id' => $user->id,
+            'item_id' => $lesson->id,
+            'item_type' => Lesson::class,
+            'type' => 'finished',
+        ]);
+        factory(Lesson::class, 5)->create([
+            'series_id' => $series_new->id,
+        ]);
+
+        // Then
+        $this->assertFalse($series_new->finished);
+        $this->assertTrue($series_finished->finished);
+    }
+
+    /** @test */
     public function it_can_get_the_user_progress()
     {
         $user = $this->login();

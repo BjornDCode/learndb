@@ -36,11 +36,26 @@ class Series extends Model implements Searchable
             ->count();
     }
 
+    public function getFinishedLessonsCount()
+    {
+        return Activity::where('user_id', Auth::user()->id)
+            ->where('item_type', Lesson::class)
+            ->where('type', 'finished')
+            ->whereIn('item_id', $this->lessons->pluck('id'))
+            ->get()
+            ->unique('item_id')
+            ->count();
+    }
+
     public function getStartedAttribute()
     {
         return $this->getStartedLessonsCount() > 0;
     }
 
+    public function getFinishedAttribute()
+    {
+        return $this->getFinishedLessonsCount() === $this->lessons->count();
+    }
 
     public function getProgressAttribute()
     {

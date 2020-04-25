@@ -118,13 +118,26 @@ class SeriesIndexTest extends TestCase
         
         factory(Series::class, 5)->create();
         $series_started = factory(Series::class)->create();
-        $lesson = factory(Lesson::class)->create([
+        $series_finished = factory(Series::class)->create();
+
+        $lesson_for_started = factory(Lesson::class)->create([
             'series_id' => $series_started->id,
         ]);
         factory(Activity::class)->create([
             'user_id' => $user->id,
-            'item_id' => $lesson->id,
+            'item_id' => $lesson_for_started->id,
             'item_type' => Lesson::class,
+            'type' => 'started',
+        ]);
+
+        $lesson_for_finished = factory(Lesson::class)->create([
+            'series_id' => $series_finished->id,
+        ]);
+        factory(Activity::class)->create([
+            'user_id' => $user->id,
+            'item_id' => $lesson_for_finished->id,
+            'item_type' => Lesson::class,
+            'type' => 'finished',
         ]);
 
         $this->get('/library')
