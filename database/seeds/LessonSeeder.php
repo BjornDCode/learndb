@@ -25,22 +25,35 @@ class LessonSeeder extends Seeder
     {
         Series::all()->each(function($series) {
             collect(File::files(database_path('seeds/data/' . $series->slug)))->each(function($file) use ($series) {
-                $details = YamlFrontMatter::parse(
+                $document = YamlFrontMatter::parse(
                     File::get($file->getPathname())
                 );
-                $article = Article::create([
-                    'title' => $details->title,
-                    'content' => $details->body(),
-                ]);
+
+                if ($document->type === 'Article') {
+                    $content = $this->createArticle($document);
+                }
+
+                if ($document->type === 'Quiz') {
+                    $content = $this->createQuiz($document);
+                }
+
                 Lesson::create([
-                    'title' => $details->title,
-                    'slug' => $details->slug,
-                    'description' => $details->description,
-                    'content_type' => Article::class,
-                    'content_id' => $article->id,
+                    'title' => $document->title,
+                    'slug' => $document->slug,
+                    'description' => $document->description,
+                    'content_type' => "App\\{$document->type}",
+                    'content_id' => $content->id,
                     'series_id' => $series->id,
                 ]);
             });
         });
+    }
+
+    public function createArticle($document)
+    {
+        return Article::create([
+            'title' => $document->title,
+            'content' => $document->body(),
+        ]);
     }
 }
