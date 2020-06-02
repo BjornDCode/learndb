@@ -7,7 +7,7 @@
 </template>
 
 <script>
-    import Header from '@/partials/Header'
+    import Header from '@/Partials/Header'
 
     export default {
         components: {
