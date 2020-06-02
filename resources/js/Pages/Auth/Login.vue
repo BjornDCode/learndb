@@ -1,71 +1,76 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Login</div>
+    <div class="min-h-screen bg-indigo-100 p-8">
+        <div class="max-w-sm mx-auto">
+            <Headline>Login</Headline>
+            <form @submit.prevent="submit">
+                <input
+                    v-model="form.email"
+                    type="email"
+                    class="block w-full bg-white rounded px-4 py-3 shadow focus:outline-none focus:shadow-outline "
+                    name="email"
+                    required
+                    autocomplete="email"
+                    autofocus
+                    placeholder="Email"
+                />
 
-                    <div class="card-body">
-                        <form @submit.prevent="submit">
+                <input
+                    v-model="form.password"
+                    type="password"
+                    class="block w-full bg-white rounded px-4 py-3 shadow focus:outline-none focus:shadow-outline mt-8"
+                    name="password"
+                    required
+                    autocomplete="current-password"
+                    placeholder="Password"
+                />
 
-                            <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
-
-                                <div class="col-md-6">
-                                    <input v-model="form.email" type="email" class="form-control" name="email" required autocomplete="email" autofocus>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-
-                                <div class="col-md-6">
-                                    <input v-model="form.password" type="password" class="form-control is-invalid" name="password" required autocomplete="current-password">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-md-6 offset-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="remember" id="remember">
-
-                                        <label class="form-check-label" for="remember">
-                                            Remember me
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Login
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                <div class="flex justify-end">
+                    <Button type="submit" class=" mt-8">
+                        Login
+                    </Button>
                 </div>
-            </div>
+            </form>
+
+            <Card class="p-8 mt-8">
+                <p class="text-gray-700">
+                    This is a demo version. Login with
+                    <code class="bg-blue-100 text-blue-800 text-sm px-2 py-1"
+                        >test@test.com</code
+                    >
+                    and
+                    <code class="bg-blue-100 text-blue-800 text-sm px-2 py-1"
+                        >password</code
+                    >
+                </p>
+            </Card>
         </div>
     </div>
 </template>
 
 <script>
+    import Card from '@/Components/Card'
+    import Button from '@/Components/Button'
+    import Headline from '@/Components/Headline'
+
     export default {
+        components: {
+            Card,
+            Button,
+            Headline,
+        },
+
         data() {
             return {
                 form: {
                     email: '',
                     password: '',
-                }
+                },
             }
         },
 
         methods: {
             submit() {
-                this.$inertia
-                    .post(this.route('login'), this.form)
+                this.$inertia.post(this.route('login'), this.form)
             },
         },
     }
