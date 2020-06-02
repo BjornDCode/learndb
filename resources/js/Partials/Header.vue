@@ -45,8 +45,8 @@
 </template>
 
 <script>
-    import Logo from '@/components/Logo'
-    import Icon from '@/components/Icon'
+    import Logo from '@/Components/Logo'
+    import Icon from '@/Components/Icon'
 
     export default {
         components: {
