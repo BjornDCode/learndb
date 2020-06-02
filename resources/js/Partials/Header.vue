@@ -34,7 +34,7 @@
                     Profile
                 </inertia-link>
                 <inertia-link
-                    href="#"
+                    href="/logout"
                     class="block text-sm text-blue-800 font-medium leading-none px-4 py-3 md:inline md:p-0 ml-6"
                 >
                     Log out

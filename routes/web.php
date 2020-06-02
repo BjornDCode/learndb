@@ -26,6 +26,10 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/', function () {
         return redirect(route('library'));
     })->name('home');
+    Route::get('/logout', function() {
+        Auth::logout();
+        return redirect('/login');
+    });
     
     Route::get('/library', 'SeriesController@index')->name('library');
     Route::get('/series/{series}', 'SeriesController@show')->name('series.show');
