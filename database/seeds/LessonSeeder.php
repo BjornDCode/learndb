@@ -56,4 +56,28 @@ class LessonSeeder extends Seeder
             'content' => $document->body(),
         ]);
     }
+
+    public function createQuiz($document)
+    {
+        $quiz = Quiz::create([
+            'title' => $document->title,
+        ]);
+
+        collect($document->questions)->each(function ($options, $question) use ($quiz) {
+            $question = Question::create([
+                'title' => $question,
+                'quiz_id' => $quiz->id,
+            ]);
+            
+            collect($options)->each(function($correct, $option) use ($question) {
+                Option::create([
+                    'title' => $option,
+                    'correct' => $correct,
+                    'question_id' => $question->id,
+                ]);
+            });
+        });
+
+        return $quiz;
+    }
 }
