@@ -1,5 +1,7 @@
 <template>
-    <aside class="bg-gray-100 md:sticky md:top-0 md:h-screen md:w-64 lg:w-80">
+    <aside
+        class="bg-gray-100 md:sticky md:top-0 md:h-screen md:w-64 md:overflow-y-scroll lg:w-80"
+    >
         <button
             type="button"
             class="flex items-center w-full text-left px-4 py-2 focus:outline-none focus:shadow-outline md:hidden"
