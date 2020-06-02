@@ -69,7 +69,8 @@
     div >>> ul,
     div >>> ol,
     div >>> blockquote,
-    div >>> pre {
+    div >>> pre,
+    div >>> table {
         @apply mb-4;
     }
 
@@ -96,5 +97,25 @@
 
     div >>> pre code {
         @apply p-8 bg-gray-100 rounded-md block overflow-x-scroll;
+    }
+
+    div >>> table {
+        @apply shadow w-full rounded overflow-hidden;
+    }
+
+    div >>> table th {
+        @apply bg-gray-100 border-b border-gray-300 font-medium text-xs uppercase text-gray-700 text-left px-6 py-3;
+    }
+
+    div >>> table tbody td {
+        @apply text-sm text-gray-700 px-6 py-3;
+    }
+
+    div >>> table tbody td a {
+        @apply text-gray-700;
+    }
+
+    div >>> table tbody tr:nth-child(2n) td {
+        @apply bg-gray-100;
     }
 </style>
