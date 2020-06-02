@@ -20,52 +20,28 @@ class LessonSeeder extends Seeder
      */
     public function run()
     {
-        Series::all()->each(function ($series) {
-            factory(Lesson::class)->create([
-                'series_id' => $series->id,
-                'content_type' => Article::class,
-                'content_id' => factory(Article::class)->create()->id, 
-            ]);
-
-            factory(Lesson::class)->create([
-                'series_id' => $series->id,
-                'content_type' => Video::class,
-                'content_id' => factory(Video::class)->create()->id, 
-            ]);
-
-            factory(Lesson::class)->create([
-                'series_id' => $series->id,
-                'content_type' => Quiz::class,
-                'content_id' => factory(Quiz::class)->create()->id, 
+        tap($this->getSeries('database-normalisation'), function ($series) {
+            $article1 = Article::create([
+                'title' => 'What is database normalisation?',
+                'content' => file_get_contents(database_path('seeds/data/database-normalisation/What is database normalisation?.md'))
             ]);
         });
+        // $databaseNormalisationSeries = Series::where('slug', 'database-normalisation')->get();
+        // $erDiagramsSeries = Series::where('slug', 'er-diagrams')->get();
+        // $postgresSeries = Series::where('slug', 'postgresql')->get();
+        // $phpAndDatabasesSeries = Series::where('slug', 'php-and-databases')->get();
+        // $relationalDatabasesSeries = Series::where('slug', 'relational-databases')->get();
+        // $sqlSeries = Series::where('slug', 'sql')->get();
+        // Series::all()->each(function ($series) {
+        //     factory(Lesson::class, 3)->create([
+        //         'series_id' => $series->id,
+        //     ]);
+        // });
 
-        Quiz::all()->each(function ($quiz) {
-            factory(Question::class, 2)->create([
-                'quiz_id' => $quiz->id,
-            ]);
-        });
+    }
 
-        Question::all()->each(function ($question) {
-            factory(Option::class, 4)->create([
-                'question_id' => $question->id,
-            ]);
-        });
-
-        Lesson::all()->each(function ($lesson) {
-            factory(Resource::class, 3)->create([
-                'lesson_id' => $lesson->id,
-            ]);
-
-            factory(Comment::class, 3)->create([
-                'lesson_id' => $lesson->id,
-            ]);
-        });
-
-        Comment::all()->nth(2)->each(function ($comment) {
-           factory(Comment::class)->create([
-                'parent_id' => $comment->id,
-            ]); 
-        });
+    private function getSeries($slug)
+    {
+        return Series::where('slug', $slug)->get();
     }
 }

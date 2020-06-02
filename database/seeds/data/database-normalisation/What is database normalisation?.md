@@ -1,0 +1,37 @@
+# What is database normalisation?
+
+Database normalisation is the process of eliminating abnormal or inconsistent data from a database. There are different stages of normalisation and every time you reach the criteria of the next level you achieved a new form.
+
+Normalising is restructuring the database so that you reduce redundant data storage and improve the overall integrity of the data.
+
+## Anomalies
+
+When a query is made to a database there are three types of anomalies that can occur.
+
+### Insertion anomaly
+
+If your table is designed in such a way that new records cannot be added because there might be information on the record that can only be added at a later point.
+
+We have a users table with the following columns: id, name, email, password, team_name.
+
+When creating new records in the table, users might not have been assigned a team yet. The only way to create new records in this table is to leave the team_name with a null value and then update it at a later point.
+
+### Update anomaly
+
+If your table is designed in such a way that in order to update a single attribute on a record requires updating multiple records, because the same data is stored on multiple records.
+
+We have a user_articles table with the following columns: id, user_name, user_email, article_title, article_content.
+
+For each article the user has in the table their user_name and user_email is duplicated. If the user ever were to change their user name or email each record in this table would have to be update to reflect the change.
+
+## Deletion anomaly
+
+If your table is designed in such a way that removing a single piece of data requires removing other data that wasn't supposed to be deleted.
+
+We have a users table with the following columns: id, name, email, password, team_name.
+
+If the user is no longer part of the same team, but still exists in the system we would have to delete the entire record.
+
+## Unnormalised form
+
+If any of the anomalies above occurs in the design of a database the database is in the unnormalised form.

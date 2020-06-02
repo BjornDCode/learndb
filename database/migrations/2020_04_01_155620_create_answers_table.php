@@ -19,6 +19,7 @@ class CreateAnswersTable extends Migration
             $table->bigInteger('option_id')->unsigned();
             $table->timestamps();
 
+            $table->index(['user_id', 'option_id']);
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('option_id')->references('id')->on('options');
         });

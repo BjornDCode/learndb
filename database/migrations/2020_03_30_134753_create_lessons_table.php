@@ -23,6 +23,7 @@ class CreateLessonsTable extends Migration
             $table->bigInteger('series_id')->unsigned();
             $table->timestamps();
 
+            $table->index(['slug', 'series_id']);
             $table->foreign('series_id')->references('id')->on('series');
         });
     }

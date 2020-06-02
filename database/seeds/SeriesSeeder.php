@@ -13,28 +13,33 @@ class SeriesSeeder extends Seeder
     public function run()
     {
         factory(Series::class)->create([
-            'title' => 'Introduction to databases',
-            'slug' => 'introduction-to-databases',
-        ]);
-
-        factory(Series::class)->create([
             'title' => 'Database Normalisation',
             'slug' => 'database-normalisation',
         ]);
 
         factory(Series::class)->create([
-            'title' => 'Relational Databases',
+            'title' => 'ER Diagrams',
+            'slug' => 'er-diagrams',
+        ]);
+
+        factory(Series::class)->create([
+            'title' => 'PostgreSQL',
+            'slug' => 'postgresql',
+        ]);
+
+        factory(Series::class)->create([
+            'title' => 'PHP and databases',
+            'slug' => 'php-and-databases',
+        ]);
+
+        factory(Series::class)->create([
+            'title' => 'Relational database',
             'slug' => 'relational-databases',
         ]);
 
         factory(Series::class)->create([
-            'title' => 'Graph Databases',
-            'slug' => 'graph-databases',
-        ]);
-
-        factory(Series::class)->create([
-            'title' => 'Advanced Data Modelling',
-            'slug' => 'advanced-data-modelling',
+            'title' => 'SQL',
+            'slug' => 'sql',
         ]);
     }
 }

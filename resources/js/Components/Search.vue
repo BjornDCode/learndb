@@ -54,7 +54,11 @@
 
         methods: {
             getResultIcon(type) {
-                return 'queue'
+                if (type === 'series') {
+                    return 'queue'
+                }
+
+                return 'book-reference'
             },
 
             search() {
