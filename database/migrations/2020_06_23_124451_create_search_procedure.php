@@ -23,10 +23,10 @@ BEGIN
     SELECT lessons.id, lessons.title, lessons.slug, 'lesson' AS type, series.slug as parent_slug FROM lessons
     INNER JOIN series
     ON lessons.series_id = series.id
-    WHERE lessons.title LIKE concat('%', search_query, '%')
+    WHERE to_tsvector(lessons.title) @@ to_tsquery(search_query)
     UNION ALL 
     SELECT series.id, series.title, series.slug, 'series' AS type, '' as parent_slug FROM series
-    WHERE series.title LIKE concat('%', search_query, '%');
+    WHERE to_tsvector(series.title) @@ to_tsquery(search_query)
 END
 \$function\$
 ");
