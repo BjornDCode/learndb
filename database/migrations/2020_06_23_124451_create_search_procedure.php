@@ -26,7 +26,7 @@ BEGIN
     WHERE to_tsvector(lessons.title) @@ to_tsquery(search_query)
     UNION ALL 
     SELECT series.id, series.title, series.slug, 'series' AS type, '' as parent_slug FROM series
-    WHERE to_tsvector(series.title) @@ to_tsquery(search_query)
+    WHERE to_tsvector(series.title) @@ to_tsquery(search_query);
 END
 \$function\$
 ");
