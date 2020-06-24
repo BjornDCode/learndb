@@ -35,10 +35,10 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/series/{series}', 'SeriesController@show')->name('series.show');
 
     Route::get('/series/{series}/lesson/{lesson}', 'LessonController@show')->name('lesson.show');
-    Route::bind('lesson', function ($lesson, $route) {
-        $series = Series::where('slug', $route->parameter('series'))->firstOrFail();
-        return Lesson::where('series_id', $series->id)->where('slug', $lesson)->firstOrFail();
-    });
+    // Route::bind('lesson', function ($lesson, $route) {
+    //     $series = Series::where('slug', $route->parameter('series'))->firstOrFail();
+    //     return Lesson::where('series_id', $series->id)->where('slug', $lesson)->firstOrFail();
+    // });
 
     Route::post('/series/{series}/lesson/{lesson}/answers', 'AnswerController@store')->name('answers.store');
     Route::post('/comments', 'CommentController@store')->name('comment.store');
